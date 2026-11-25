@@ -1,0 +1,21 @@
+﻿APEXlang Compile Errors:
+File: pages/p00001-payment-delivery-search.apx
+Line: 59
+Column: 12
+Type: INVALID_PROPERTY
+Error: Invalid property: sqlQuery
+
+File: pages/p00001-payment-delivery-search.apx
+Line: 53
+Column: 4
+Type: MISSING_REQUIRED_PROPERTY
+Error: Missing required parameter (961): source - tableName (string)
+
+File: pages/p00001-payment-delivery-search.apx
+Line: 1336
+Column: 4
+Type: MISSING_REQUIRED_PROPERTY
+Error: Missing required parameter (60): execution - sequence (number)
+
+
+

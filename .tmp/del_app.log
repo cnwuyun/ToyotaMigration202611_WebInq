@@ -1,0 +1,20 @@
+﻿sql.exe : Picked up JAVA_TOOL_OPTIONS: -XX:TieredStopAtLevel=1 -XX:+UseSerialGC -Xshare:auto
+At line:17 char:196
++ ... 9;`nexit" | & "C:\EEE\tools\sqlcl\bin\sql.exe" -name toyota_maps -s 2 ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_...GC -Xshare:auto:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+begin apex_util.delete_application(p_application_id => 109); end;
+                *
+ERROR at line 1:
+ORA-06550: line 1, column 17:
+PLS-00302: component 'DELETE_APPLICATION' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+Help: https://docs.oracle.com/error-help/db/ora-06550/
+
+
+
+0 rows selected. 
+

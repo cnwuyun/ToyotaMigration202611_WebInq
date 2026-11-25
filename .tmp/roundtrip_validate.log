@@ -1,0 +1,112 @@
+{
+  "timestamp": "2026-11-25T04:46:31.860Z",
+  "platform": "win32",
+  "db_connection_name": "toyota_maps",
+  "connection_signature": null,
+  "execution_mode_requested": "path",
+  "execution_mode_used": "path",
+  "reason": "path_runtime_forced",
+  "runtime_selection_note": "Selected PATH SQLcl because execution mode was forced to path.",
+  "runtime_entrypoint": "sql on PATH",
+  "resolved_apex_build_root": "",
+  "authenticated_connect_order": [
+    "sql -name <db_connection_name>",
+    "sql <db_connection_name>",
+    "sql /nolog + connect <db_connection_name>"
+  ],
+  "sqlcl_found": true,
+  "sqlcl_executable": "sql.exe",
+  "sqlcl_version_raw": "SQLcl: Release 26.2.2.0 Production Build: 26.2.2.233.1901\nPicked up JAVA_TOOL_OPTIONS: -XX:TieredStopAtLevel=1 -XX:+UseSerialGC -Xshare:auto",
+  "sqlcl_version_recorded": true,
+  "apex_command_available": true,
+  "apex_validate_available": true,
+  "apex_import_available": true,
+  "apex_export_available": true,
+  "required_runtime_commands_available": true,
+  "runtime_validate_enabled": true,
+  "runtime_import_enabled": true,
+  "runtime_export_enabled": true,
+  "capability_state": "path_sqlcl_apex_validate_import",
+  "path_sqlcl": {
+    "candidate": "path",
+    "runtime_entrypoint": "sql on PATH",
+    "authenticated_connect_order": [
+      "sql -name <db_connection_name>",
+      "sql <db_connection_name>",
+      "sql /nolog + connect <db_connection_name>"
+    ],
+    "sqlcl_found": true,
+    "executable": "sql.exe",
+    "version_raw": "SQLcl: Release 26.2.2.0 Production Build: 26.2.2.233.1901\nPicked up JAVA_TOOL_OPTIONS: -XX:TieredStopAtLevel=1 -XX:+UseSerialGC -Xshare:auto",
+    "version_recorded": true,
+    "apex_command_available": true,
+    "apex_validate_available": true,
+    "apex_import_available": true,
+    "apex_export_available": true,
+    "required_runtime_commands_available": true,
+    "runtime_validate_enabled": true,
+    "runtime_import_enabled": true,
+    "runtime_export_enabled": true,
+    "capability_state": "path_sqlcl_apex_validate_import",
+    "notes": []
+  },
+  "build_root_runtime": {
+    "status": "fail",
+    "reason": "apex_root_missing",
+    "apex_root": "C:\\Users\\robin wu\\apex",
+    "connection_signature": null,
+    "available_build_paths": [],
+    "candidate_paths": [],
+    "resolved_apex_build_root": "",
+    "recommended_cwd": "",
+    "flow_sql_present": false,
+    "next_action": "Provide a valid local apex root or override --apex-root.",
+    "candidate": "build-root",
+    "runtime_entrypoint": "apex sql from resolved build root",
+    "authenticated_connect_order": [
+      "apex sql (resolved build root)",
+      "sql -name <db_connection_name>",
+      "sql <db_connection_name>",
+      "sql /nolog + connect <db_connection_name>"
+    ],
+    "apex_cli_found": false,
+    "executable": "apex",
+    "version_raw": "",
+    "version_recorded": false,
+    "apex_command_available": false,
+    "apex_validate_available": false,
+    "apex_import_available": false,
+    "apex_export_available": false,
+    "required_runtime_commands_available": false,
+    "runtime_validate_enabled": false,
+    "runtime_import_enabled": false,
+    "runtime_export_enabled": false,
+    "capability_state": "build_root_unresolved",
+    "notes": [
+      "apex_root_missing"
+    ]
+  },
+  "notes": [
+    "apex_root_missing"
+  ]
+}
+## local_validate_direct_apexctl
+Vocabulary compatibility check passed.
+APEXLANG_DSL_LINT_OK
+VALIDATION_LINT_OK
+APEXLANG_LOCAL_CHECK_OK
+
+## roundtrip_sql_name_alias
+SQLcl: Release 26.2 Production on Wed Nov 25 12:50:09 2026
+
+Copyright (c) 1982, 2026, Oracle.  All rights reserved.
+
+Connected to:
+Oracle AI Database 26ai Enterprise Edition Release 23.26.4.1.0 - Production
+Version 23.26.4.1.0
+
+Validation successful.
+
+Disconnected from Oracle AI Database 26ai Enterprise Edition Release 23.26.4.1.0 - Production
+Version 23.26.4.1.0
+Picked up JAVA_TOOL_OPTIONS: -XX:TieredStopAtLevel=1 -XX:+UseSerialGC -Xshare:auto

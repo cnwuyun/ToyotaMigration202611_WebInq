@@ -1,0 +1,29 @@
+﻿sql.exe : Picked up JAVA_TOOL_OPTIONS: -XX:TieredStopAtLevel=1 -XX:+UseSerialGC -Xshare:auto
+At line:27 char:6
++ "@ | & "C:\EEE\tools\sqlcl\bin\sql.exe" -name toyota_maps -s 2>&1 | O ...
++      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_...GC -Xshare:auto:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+   [1mPAGE_ID[m [1mPAGE_NAME[m      [1mPAGE_MODE[m    
+__________ ______________ ____________ 
+         0 Global Page    Normal       
+         1 支払納品情報検索       Normal       
+      9999 Login Page     Normal       
+
+   [1mIR_COLUMNS[m 
+_____________ 
+           60 
+
+   [1mPAGE_ITEMS[m 
+_____________ 
+           15 
+
+   [1mREGIONS[m 
+__________ 
+         3 
+
+   [1mLOVS[m 
+_______ 
+     10 

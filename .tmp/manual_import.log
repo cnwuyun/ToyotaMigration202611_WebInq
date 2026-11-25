@@ -1,0 +1,17 @@
+﻿sql.exe : Picked up JAVA_TOOL_OPTIONS: -XX:TieredStopAtLevel=1 -XX:+UseSerialGC -Xshare:auto
+At line:17 char:140
++ ... 57`nexit" | & "C:\EEE\tools\sqlcl\bin\sql.exe" -name toyota_maps -s 2 ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_...GC -Xshare:auto:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Importing application ID: 109 into workspace: MAPS
+APEXlang Import Errors:
+File: pages/p00001-payment-delivery-search.apx
+Line: 170
+Column: 8
+Type: PLSQL_ERROR
+Error: ORA-20001: call=wwv_flow_imp_page.create_worksheet_column, id=26369715163237246, component=26369630737237243, sqlerrm=ORA-02290: check constraint (APEX_260100.WWV_FLOW_VALID_WS_COL_TYPE) violated
+
+
+

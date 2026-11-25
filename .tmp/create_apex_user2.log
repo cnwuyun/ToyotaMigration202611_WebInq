@@ -1,0 +1,15 @@
+﻿sql.exe : Picked up JAVA_TOOL_OPTIONS: -XX:TieredStopAtLevel=1 -XX:+UseSerialGC -Xshare:auto
+At line:49 char:6
++ "@ | & "C:\EEE\tools\sqlcl\bin\sql.exe" -name toyota_maps -s 2>&1 | O ...
++      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_...GC -Xshare:auto:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+WS_SET_OK
+CREATED
+
+
+[1mUSER_NAME[m     [1mIS_ADMIN[m    
+_____________ ___________ 
+MAPS_ADMIN    Yes         
+XX10001       No          

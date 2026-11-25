@@ -1,0 +1,1030 @@
+﻿sql.exe : Picked up JAVA_TOOL_OPTIONS: -XX:TieredStopAtLevel=1 -XX:+UseSerialGC -Xshare:auto
+At line:16 char:28
++ ... rt`nexit" | & "C:\EEE\tools\sqlcl\bin\sql.exe" /nolog -s 2>&1 | Out-F ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_...GC -Xshare:auto:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Export APEX Applications
+
+Subcommands:
+
+  [1mVERSION[0m
+
+  Display Version information
+
+  Examples:
+
+    Display Version information
+      [33mSQL> apex version[0m
+
+
+  [1mLIST[0m
+
+  Lists applications installed in the database.
+
+  Usage:
+
+    [33mlist[0m|[33mli[0m {OPTIONS}
+
+  Options:
+
+    [33m-applicationid[0m|[33m-api[0m <applicationid> {INTEGER}
+    List all components in the application 
+
+    [33m-changesby[0m|[33m-chb[0m <changesby>
+    Expects string parameter. Limit list values to changes by the given user
+
+    [33m-changessince[0m|[33m-chs[0m <changessince> {yyyy-MM-dd}
+    Expects date parameter (yyyy-mm-dd). Limit list values to changes since the
+    given date
+
+    [33m-workspaceid[0m|[33m-woi[0m <workspaceid> {INTEGER}
+    List all applications installed in the workspace
+
+  Examples:
+
+    Lists applications installed in the database.
+      [33mSQL> apex list[0m
+    
+    Lists applications in the workspace with id 1908816359534887.
+      [33mSQL> apex list -workspaceid  1908816359534887[0m
+    
+    Lists components of the application with id 123.
+      [33mSQL> apex list -applicationid 123[0m
+    
+    Lists components of the application with id 123 and changed by ora_user.
+      [33mSQL> apex list -applicationid 123 -changesby ora_user[0m
+    
+    Lists components of the application with id 123 and changed since
+    2024-05-16.
+      [33mSQL> apex list -applicationid 123 -changessince 2024-05-16[0m
+
+
+  [1mLOG[0m
+
+  Reports APEX application usage from APEX_WORKSPACE_LOG_SUMMARY.
+
+  Examples:
+
+    Reports APEX application usage from APEX_WORKSPACE_LOG_SUMMARY.
+      [33mSQL> apex log[0m
+
+
+  [1mEXPORT-ALL-WORKSPACES[0m
+
+  Export all workspaces without their applications, structure
+  only.
+
+  Usage:
+
+    [33mexport-all-workspaces[0m|[33mexaw[0m {OPTIONS}
+
+  Options:
+
+    [33m-expminimal[0m|[33m-exmi[0m
+    Only export workspace definition, users, and groups
+
+    [33m-skipexportdate[0m|[33m-sked[0m
+    Skip export date in application export files
+
+    [33m-exitwhendone[0m|[33m-exwd[0m
+    When true will cause SqlCl to exit upon completion of command.
+
+    [33m-debug[0m|[33m-de[0m
+    Enable Debug output
+
+    [33m-expteamdevdata[0m|[33m-exte[0m
+    Export team development data for all workspaces or identified by
+    -workspaceid 
+
+    [33m-overwrite-files[0m|[33m-ovf[0m
+    Overwrite any files produced by this process if they already
+    exist
+
+  Examples:
+
+    Export all workspaces.
+     [33mSQL> apex export-all-workspaces[0m 
+    
+
+
+  [1mEXPORT-WORKSPACE[0m
+
+  Export workspace without the applications, structure
+  only.
+
+  Usage:
+
+    [33mexport-workspace[0m|[33mexwo[0m {OPTIONS}
+
+  Options:
+
+    [33m-workspaceid[0m|[33m-woi[0m <workspaceid> {INTEGER} [required]
+    Workspace ID for which all applications to be exported or the workspace to
+    be exported
+
+    [33m-expminimal[0m|[33m-exmi[0m
+    Only export workspace definition, users, and groups
+
+    [33m-skipexportdate[0m|[33m-sked[0m
+    Skip export date in application export files
+
+    [33m-exitwhendone[0m|[33m-exwd[0m
+    When true will cause SqlCl to exit upon completion of command.
+
+    [33m-debug[0m|[33m-de[0m
+    Enable Debug output
+
+    [33m-expteamdevdata[0m|[33m-exte[0m
+    Export team development data for all workspaces or identified by
+    -workspaceid 
+
+    [33m-overwrite-files[0m|[33m-ovf[0m
+    Overwrite any files produced by this process if they already
+    exist
+
+  Examples:
+
+    Export workspace without the applications, structure only.
+     [33mSQL> apex export-workspace -woi 1908816359534887[0m
+
+
+  [1mEXPORT-FEEDBACK[0m
+
+  Export workspace feedback 
+
+  Usage:
+
+    [33mexport-feedback[0m|[33mexfe[0m {OPTIONS}
+
+  Options:
+
+    [33m-workspaceid[0m|[33m-woi[0m <workspaceid> {INTEGER} [required]
+    Workspace ID for which all applications to be exported or the workspace to
+    be exported
+
+    [33m-deploymentsystem[0m|[33m-desy[0m <deploymentsystem>
+    Deployment system for exported feedback
+
+    [33m-skipexportdate[0m|[33m-sked[0m
+    Skip export date in application export files
+
+    [33m-exitwhendone[0m|[33m-exwd[0m
+    When true will cause SqlCl to exit upon completion of command.
+
+    [33m-debug[0m|[33m-de[0m
+    Enable Debug output
+
+    [33m-expfeedbacksince[0m|[33m-exfs[0m <expfeedbacksince> {yyyy-MM-dd}
+    Export team development feedback since date in the format YYYYMMDD
+
+    [33m-overwrite-files[0m|[33m-ovf[0m
+    Overwrite any files produced by this process if they already
+    exist
+
+  Examples:
+
+    Export a workspace feedback.
+     [33mSQL> apex export-feedback -woi 1908816359534887[0m
+
+
+  [1mEXPORT-STATIC-FILES[0m
+
+  Export static files in a workspace
+
+  Usage:
+
+    [33mexport-static-files[0m|[33mexsf[0m {OPTIONS}
+
+  Options:
+
+    [33m-workspaceid[0m|[33m-woi[0m <workspaceid> {INTEGER} [required]
+    Workspace ID for which all applications to be exported or the workspace to
+    be exported
+
+    [33m-exitwhendone[0m|[33m-exwd[0m
+    When true will cause SqlCl to exit upon completion of command.
+
+    [33m-debug[0m|[33m-de[0m
+    Enable Debug output
+
+    [33m-skipexportdate[0m|[33m-sked[0m
+    Skip export date in application export files
+
+    [33m-overwrite-files[0m|[33m-ovf[0m
+    Overwrite any files produced by this process if they already
+    exist
+
+  Examples:
+
+    Export static files in a workspace.
+     [33mSQL> apex export-static-files -woi 1908816359534887[0m
+
+
+  [1mEXPORT[0m
+
+  Export APEX applications and or workspaces. 
+
+  Usage:
+
+    [33mexport[0m|[33mex[0m {OPTIONS}
+
+  Options:
+
+    [33m-applicationid[0m|[33m-api[0m <applicationid> {INTEGER}
+    ID for application to be exported
+
+    [33m-workspaceid[0m|[33m-woi[0m <workspaceid> {INTEGER}
+    Workspace ID for which all applications to be exported or the workspace to
+    be exported
+
+    [33m-instance[0m|[33m-in[0m
+    Export all applications 
+
+    [33m-expworkspace[0m|[33m-exwo[0m
+    Export workspace identified by -workspaceid or all workspaces if
+    -workspaceid not specified 
+
+    [33m-expminimal[0m|[33m-exmi[0m
+    Only export workspace definition, users, and groups
+
+    [33m-expfiles[0m|[33m-exfi[0m
+    Export all workspace files identified by -workspaceid
+
+    [33m-exptype[0m|[33m-exty[0m <exptype>
+    {APEXLANG|APPLICATION_SOURCE|CHECKSUM-SH1|CHECKSUM-SH256|EMBEDDED_CODE|READABLE_JSON|READABLE_YAML|SQL,...}
+    (APPLICATION_SOURCE)
+    Comma delimited list of export types to perform: 
+    * APPLICATION_SOURCE: Export an APEX application using other parameters
+    passed.
+    * APEXLANG: Export a readable version of the application meta-data in
+    APEXlang format.
+    * SQL: Export am APEX application in to SQL format.
+    * EMBEDDED_CODE: Export code such as SQL, PL/SQL and Javascript. APEX
+    ignores all other options when EMBEDDED_CODE is selected.
+    * CHECKSUM-SH1: Export a SHA1 checksum that is independent of IDs and can be
+    compared across instances and workspaces.
+    * CHECKSUM-SH256: Export a SHA-256 checksum that is independent of IDs and
+    can be compared across instances and workspaces.
+    * READABLE_JSON: Export a readable version of the application meta-data in
+    JSON format.
+    * READABLE_YAML: Export a readable version of the application meta-data in
+    YAML format.
+    On APEX version 26.1 and after readable formats will be exported as
+    APEXlang.
+
+    [33m-exppubreports[0m|[33m-exre[0m
+    Export all user saved public interactive reports 
+
+    [33m-expsavedreports[0m|[33m-exsr[0m
+    Export all user saved interactive reports 
+
+    [33m-expirnotif[0m|[33m-exir[0m
+    Export all interactive report notifications 
+
+    [33m-exptranslations[0m|[33m-extr[0m
+    Export the translation mappings and all text from the translation repository
+    
+
+    [33m-expfeedback[0m|[33m-exfe[0m
+    Export team development feedback for all workspaces or identified by
+    -workspaceid 
+
+    [33m-expteamdevdata[0m|[33m-exte[0m
+    Export team development data for all workspaces or identified by
+    -workspaceid 
+
+    [33m-expfeedbacksince[0m|[33m-exfs[0m <expfeedbacksince> {yyyy-MM-dd}
+    Export team development feedback since date in the format YYYYMMDD
+
+    [33m-exporiginalids[0m|[33m-exoi[0m
+    Causes export to emit ids as they are in the system
+
+    [33m-expnosubscriptions[0m|[33m-exns[0m
+    Do not export references to subscribed components 
+
+    [33m-expsupportingobjects[0m|[33m-exso[0m <expsupportingobjects> {I|N|Y} (Y)
+    Pass (Y)es, (N)o or (I)nstall to override the default 
+
+    [33m-expaclassignments[0m|[33m-exacl[0m
+    Export ACL User Role Assignments 
+
+    [33m-expcomponents[0m|[33m-exc[0m <expcomponents>
+    Export application components. Parameters must be of form TYPE:ID, multiple
+    values must be quoted "TYPE:ID TYPE:ID" 
+
+    [33m-skipexportdate[0m|[33m-sked[0m
+    Skip export date in application export files
+
+    [33m-deploymentsystem[0m|[33m-desy[0m <deploymentsystem>
+    Deployment system for exported feedback
+
+    [33m-dir[0m|[33m-di[0m <dir> {PATH}
+    Save all files in the given directory, e.g. -dir some/sub/directory
+
+    [33m-split[0m|[33m-sp[0m
+    Split applications into multiple files
+
+    [33m-debug[0m|[33m-de[0m
+    Enable Debug output
+
+    [33m-expcomments[0m|[33m-exco[0m
+    Export developer comments. Deprecated for APEX 26.1 or higher since comments
+    are included in export by default. Use DISABLE-EXP-COMMENTS option to omit
+    them.
+
+    [33m-disable-exp-comments[0m|[33m-dexc[0m
+    Disable comments in export in APEX 26.1 on higher. Use EXPCOMMENTS option on
+    earlier APEX versions.
+
+    [33m-exitwhendone[0m|[33m-exwd[0m
+    When true will cause SqlCl to exit upon completion of command.
+
+    [33m-overwrite-files[0m|[33m-ovf[0m
+    Overwrite any files produced by this process if they already exist
+
+    [33m-audittype[0m|[33m-auty[0m <audittype> {DATES_ONLY|NAMES_AND_DATES|NULL} (NULL)
+    Specifies the detail of audit information to include: 
+    * NULL: export will not include any audit information 
+    * NAMES_AND_DATES: export will include created on, created by, updated on,
+    updated by values if they exist.
+    * DATES_ONLY: export will include created on and updated on values if they
+    exist. Usernames will not be included.
+
+    [33m-expruntimeinstances[0m|[33m-exrin[0m <expruntimeinstances> {TASK|WORKFLOW,...} (NULL)
+    Comma separated list for which to export runtime instance data.
+    * WORKFLOW: Export workflow instances and task instances associated to a
+    workflow.
+    * TASK: Export task instances not associated to any workflow.
+
+    [33m-force[0m|[33m-f[0m
+    If the directory and files already exist in creation location, providing
+    this parameter will remove all existing directory and files. If exporting
+    component, only the component files will be removed.
+
+  Examples:
+
+    Export an application with the application id is 1234.
+      [33mSQL> apex export -applicationid 1234[0m
+    
+    Export all applications in the workspace with id is 1908816359534887.
+      [33mSQL> apex export -workspaceid 1908816359534887[0m
+    
+    To export an application as a directory with each application component
+    split into a separate file, use the apex export command and include the
+    application ID and the -split option.
+      [33mSQL> apex export -applicationid 1234 -split[0m
+    
+    To export an application in APEXlang format, use the apex export command,
+    include the application ID and set -exptype to APEXLANG.
+      [33mSQL> apex export -applicationid 1234 -exptype APEXLANG[0m
+
+
+  [1mEXPORT-APPLICATION[0m
+
+  Export all or the parts of an application
+
+  Usage:
+
+    [33mexport-application[0m|[33mexap[0m {OPTIONS}
+
+  Options:
+
+    [33m-applicationid[0m|[33m-api[0m <applicationid> {INTEGER} [required]
+    ID for application to be exported
+
+    [33m-exptype[0m|[33m-exty[0m <exptype>
+    {APEXLANG|APPLICATION_SOURCE|CHECKSUM-SH1|CHECKSUM-SH256|EMBEDDED_CODE|READABLE_JSON|READABLE_YAML|SQL,...}
+    (APPLICATION_SOURCE)
+    Comma delimited list of export types to perform: 
+    * APPLICATION_SOURCE: Export an APEX application using other parameters
+    passed.
+    * APEXLANG: Export a readable version of the application meta-data in
+    APEXlang format.
+    * SQL: Export am APEX application in to SQL format.
+    * EMBEDDED_CODE: Export code such as SQL, PL/SQL and Javascript. APEX
+    ignores all other options when EMBEDDED_CODE is selected.
+    * CHECKSUM-SH1: Export a SHA1 checksum that is independent of IDs and can be
+    compared across instances and workspaces.
+    * CHECKSUM-SH256: Export a SHA-256 checksum that is independent of IDs and
+    can be compared across instances and workspaces.
+    * READABLE_JSON: Export a readable version of the application meta-data in
+    JSON format.
+    * READABLE_YAML: Export a readable version of the application meta-data in
+    YAML format.
+    On APEX version 26.1 and after readable formats will be exported as
+    APEXlang.
+
+    [33m-split[0m|[33m-sp[0m
+    Split applications into multiple files
+
+    [33m-exitwhendone[0m|[33m-exwd[0m
+    When true will cause SqlCl to exit upon completion of command.
+
+    [33m-skipexportdate[0m|[33m-sked[0m
+    Skip export date in application export files
+
+    [33m-exppubreports[0m|[33m-exre[0m
+    Export all user saved public interactive reports 
+
+    [33m-expsavedreports[0m|[33m-exsr[0m
+    Export all user saved interactive reports 
+
+    [33m-expirnotif[0m|[33m-exir[0m
+    Export all interactive report notifications 
+
+    [33m-exptranslations[0m|[33m-extr[0m
+    Export the translation mappings and all text from the translation repository
+    
+
+    [33m-exporiginalids[0m|[33m-exoi[0m
+    Causes export to emit ids as they are in the system
+
+    [33m-expnosubscriptions[0m|[33m-exns[0m
+    Do not export references to subscribed components 
+
+    [33m-expcomments[0m|[33m-exco[0m
+    Export developer comments. Deprecated for APEX 26.1 or higher since comments
+    are included in export by default. Use DISABLE-EXP-COMMENTS option to omit
+    them.
+
+    [33m-disable-exp-comments[0m|[33m-dexc[0m
+    Disable comments in export in APEX 26.1 on higher. Use EXPCOMMENTS option on
+    earlier APEX versions.
+
+    [33m-expsupportingobjects[0m|[33m-exso[0m <expsupportingobjects> {I|N|Y} (Y)
+    Pass (Y)es, (N)o or (I)nstall to override the default 
+
+    [33m-expaclassignments[0m|[33m-exacl[0m
+    Export ACL User Role Assignments 
+
+    [33m-debug[0m|[33m-de[0m
+    Enable Debug output
+
+    [33m-expcomponents[0m|[33m-exc[0m <expcomponents>
+    Export application components. Parameters must be of form TYPE:ID, multiple
+    values must be quoted "TYPE:ID TYPE:ID" 
+
+    [33m-overwrite-files[0m|[33m-ovf[0m
+    Overwrite any files produced by this process if they already exist
+
+    [33m-audittype[0m|[33m-auty[0m <audittype> {DATES_ONLY|NAMES_AND_DATES|NULL} (NULL)
+    Specifies the detail of audit information to include: 
+    * NULL: export will not include any audit information 
+    * NAMES_AND_DATES: export will include created on, created by, updated on,
+    updated by values if they exist.
+    * DATES_ONLY: export will include created on and updated on values if they
+    exist. Usernames will not be included.
+
+    [33m-expruntimeinstances[0m|[33m-exrin[0m <expruntimeinstances> {TASK|WORKFLOW,...} (NULL)
+    Comma separated list for which to export runtime instance data.
+    * WORKFLOW: Export workflow instances and task instances associated to a
+    workflow.
+    * TASK: Export task instances not associated to any workflow.
+
+    [33m-force[0m|[33m-f[0m
+    If the directory and files already exist in creation location, providing
+    this parameter will remove all existing directory and files. If exporting
+    component, only the component files will be
+    removed.
+
+  Examples:
+
+    Export a single application.
+     [33mSQL> apex export-application -api 101[0m
+    
+    Export a single application in APEXlang format.
+     [33mSQL> apex export-application -api 101 -exptype APEXLANG[0m
+
+
+  [1mEXPORT-INSTANCE[0m
+
+  Export all applications in all workspaces that are not
+  hidden
+
+  Usage:
+
+    [33mexport-instance[0m|[33mexin[0m {OPTIONS}
+
+  Options:
+
+    [33m-exptype[0m|[33m-exty[0m <exptype>
+    {APEXLANG|APPLICATION_SOURCE|CHECKSUM-SH1|CHECKSUM-SH256|EMBEDDED_CODE|READABLE_JSON|READABLE_YAML|SQL,...}
+    (APPLICATION_SOURCE)
+    Comma delimited list of export types to perform: 
+    * APPLICATION_SOURCE: Export an APEX application using other parameters
+    passed.
+    * APEXLANG: Export a readable version of the application meta-data in
+    APEXlang format.
+    * SQL: Export am APEX application in to SQL format.
+    * EMBEDDED_CODE: Export code such as SQL, PL/SQL and Javascript. APEX
+    ignores all other options when EMBEDDED_CODE is selected.
+    * CHECKSUM-SH1: Export a SHA1 checksum that is independent of IDs and can be
+    compared across instances and workspaces.
+    * CHECKSUM-SH256: Export a SHA-256 checksum that is independent of IDs and
+    can be compared across instances and workspaces.
+    * READABLE_JSON: Export a readable version of the application meta-data in
+    JSON format.
+    * READABLE_YAML: Export a readable version of the application meta-data in
+    YAML format.
+    On APEX version 26.1 and after readable formats will be exported as
+    APEXlang.
+
+    [33m-split[0m|[33m-sp[0m
+    Split applications into multiple files
+
+    [33m-skipexportdate[0m|[33m-sked[0m
+    Skip export date in application export files
+
+    [33m-exppubreports[0m|[33m-exre[0m
+    Export all user saved public interactive reports 
+
+    [33m-expsavedreports[0m|[33m-exsr[0m
+    Export all user saved interactive reports 
+
+    [33m-expirnotif[0m|[33m-exir[0m
+    Export all interactive report notifications 
+
+    [33m-exptranslations[0m|[33m-extr[0m
+    Export the translation mappings and all text from the translation repository
+    
+
+    [33m-exporiginalids[0m|[33m-exoi[0m
+    Causes export to emit ids as they are in the system
+
+    [33m-expnosubscriptions[0m|[33m-exns[0m
+    Do not export references to subscribed components 
+
+    [33m-expcomments[0m|[33m-exco[0m
+    Export developer comments. Deprecated for APEX 26.1 or higher since comments
+    are included in export by default. Use DISABLE-EXP-COMMENTS option to omit
+    them.
+
+    [33m-disable-exp-comments[0m|[33m-dexc[0m
+    Disable comments in export in APEX 26.1 on higher. Use EXPCOMMENTS option on
+    earlier APEX versions.
+
+    [33m-expsupportingobjects[0m|[33m-exso[0m <expsupportingobjects> {I|N|Y} (Y)
+    Pass (Y)es, (N)o or (I)nstall to override the default 
+
+    [33m-expaclassignments[0m|[33m-exacl[0m
+    Export ACL User Role Assignments 
+
+    [33m-exitwhendone[0m|[33m-exwd[0m
+    When true will cause SqlCl to exit upon completion of command.
+
+    [33m-debug[0m|[33m-de[0m
+    Enable Debug output
+
+    [33m-expcomponents[0m|[33m-exc[0m <expcomponents>
+    Export application components. Parameters must be of form TYPE:ID, multiple
+    values must be quoted "TYPE:ID TYPE:ID" 
+
+    [33m-overwrite-files[0m|[33m-ovf[0m
+    Overwrite any files produced by this process if they already exist
+
+    [33m-expruntimeinstances[0m|[33m-exrin[0m <expruntimeinstances> {TASK|WORKFLOW,...} (NULL)
+    Comma separated list for which to export runtime instance data.
+    * WORKFLOW: Export workflow instances and task instances associated to a
+    workflow.
+    * TASK: Export task instances not associated to any workflow.
+
+    [33m-force[0m|[33m-f[0m
+    If the directory and files already exist in creation location, providing
+    this parameter will remove all existing directory and files. If exporting
+    component, only the component files will be
+    removed.
+
+  Examples:
+
+    Export all applications in all workspaces that are not hidden.
+     [33mSQL> apex export-instance[0m
+    
+    Export all applications in all workspaces that are not hidden in APEXlang
+    format.
+     [33mSQL> apex export-instance -exptype APEXLANG[0m
+
+
+  [1mEXPORT-COMPONENTS[0m
+
+  Export specific components within an application
+
+  Usage:
+
+    [33mexport-components[0m|[33mexco[0m {OPTIONS}
+
+  Options:
+
+    [33m-applicationid[0m|[33m-api[0m <applicationid> {INTEGER} [required]
+    ID for application to be exported
+
+    [33m-exptype[0m|[33m-exty[0m <exptype>
+    {APEXLANG|APPLICATION_SOURCE|CHECKSUM-SH1|CHECKSUM-SH256|EMBEDDED_CODE|READABLE_JSON|READABLE_YAML|SQL,...}
+    (APPLICATION_SOURCE)
+    Comma delimited list of export types to perform: 
+    * APPLICATION_SOURCE: Export an APEX application using other parameters
+    passed.
+    * APEXLANG: Export a readable version of the application meta-data in
+    APEXlang format.
+    * SQL: Export am APEX application in to SQL format.
+    * EMBEDDED_CODE: Export code such as SQL, PL/SQL and Javascript. APEX
+    ignores all other options when EMBEDDED_CODE is selected.
+    * CHECKSUM-SH1: Export a SHA1 checksum that is independent of IDs and can be
+    compared across instances and workspaces.
+    * CHECKSUM-SH256: Export a SHA-256 checksum that is independent of IDs and
+    can be compared across instances and workspaces.
+    * READABLE_JSON: Export a readable version of the application meta-data in
+    JSON format.
+    * READABLE_YAML: Export a readable version of the application meta-data in
+    YAML format.
+    On APEX version 26.1 and after readable formats will be exported as
+    APEXlang.
+
+    [33m-split[0m|[33m-sp[0m
+    Split applications into multiple files
+
+    [33m-skipexportdate[0m|[33m-sked[0m
+    Skip export date in application export files
+
+    [33m-exppubreports[0m|[33m-exre[0m
+    Export all user saved public interactive reports 
+
+    [33m-expsavedreports[0m|[33m-exsr[0m
+    Export all user saved interactive reports 
+
+    [33m-expirnotif[0m|[33m-exir[0m
+    Export all interactive report notifications 
+
+    [33m-exptranslations[0m|[33m-extr[0m
+    Export the translation mappings and all text from the translation repository
+    
+
+    [33m-exporiginalids[0m|[33m-exoi[0m
+    Causes export to emit ids as they are in the system
+
+    [33m-expnosubscriptions[0m|[33m-exns[0m
+    Do not export references to subscribed components 
+
+    [33m-expcomments[0m|[33m-exco[0m
+    Export developer comments. Deprecated for APEX 26.1 or higher since comments
+    are included in export by default. Use DISABLE-EXP-COMMENTS option to omit
+    them.
+
+    [33m-disable-exp-comments[0m|[33m-dexc[0m
+    Disable comments in export in APEX 26.1 on higher. Use EXPCOMMENTS option on
+    earlier APEX versions.
+
+    [33m-expsupportingobjects[0m|[33m-exso[0m <expsupportingobjects> {I|N|Y} (Y)
+    Pass (Y)es, (N)o or (I)nstall to override the default 
+
+    [33m-exitwhendone[0m|[33m-exwd[0m
+    When true will cause SqlCl to exit upon completion of command.
+
+    [33m-expaclassignments[0m|[33m-exacl[0m
+    Export ACL User Role Assignments 
+
+    [33m-debug[0m|[33m-de[0m
+    Enable Debug output
+
+    [33m-expcomponents[0m|[33m-exc[0m <expcomponents> [required]
+    Export application components. Parameters must be of form TYPE:ID, multiple
+    values must be quoted "TYPE:ID TYPE:ID" 
+
+    [33m-overwrite-files[0m|[33m-ovf[0m
+    Overwrite any files produced by this process if they already exist
+
+    [33m-force[0m|[33m-f[0m
+    If the directory and files already exist in creation location, providing
+    this parameter will remove all existing directory and files. If exporting
+    component, only the component files will be
+    removed.
+
+  Examples:
+
+    Export application components.
+     [33mSQL> apex export-components -api 101 -expcomponents PAGE:1[0m
+    
+    Export application components in APEXlang format.
+     [33mSQL> apex export-components -api 101 -expcomponents PAGE:1 -exptype
+    APEXLANG[0m
+
+
+  [1mEXPORT-ALL-APPLICATIONS[0m
+
+  Export all applications in a workspace
+
+  Usage:
+
+    [33mexport-all-applications[0m|[33mexaa[0m {OPTIONS}
+
+  Options:
+
+    [33m-workspaceid[0m|[33m-woi[0m <workspaceid> {INTEGER} [required]
+    Workspace ID for which all applications to be exported or the workspace to
+    be exported
+
+    [33m-exptype[0m|[33m-exty[0m <exptype>
+    {APEXLANG|APPLICATION_SOURCE|CHECKSUM-SH1|CHECKSUM-SH256|EMBEDDED_CODE|READABLE_JSON|READABLE_YAML|SQL,...}
+    (APPLICATION_SOURCE)
+    Comma delimited list of export types to perform: 
+    * APPLICATION_SOURCE: Export an APEX application using other parameters
+    passed.
+    * APEXLANG: Export a readable version of the application meta-data in
+    APEXlang format.
+    * SQL: Export am APEX application in to SQL format.
+    * EMBEDDED_CODE: Export code such as SQL, PL/SQL and Javascript. APEX
+    ignores all other options when EMBEDDED_CODE is selected.
+    * CHECKSUM-SH1: Export a SHA1 checksum that is independent of IDs and can be
+    compared across instances and workspaces.
+    * CHECKSUM-SH256: Export a SHA-256 checksum that is independent of IDs and
+    can be compared across instances and workspaces.
+    * READABLE_JSON: Export a readable version of the application meta-data in
+    JSON format.
+    * READABLE_YAML: Export a readable version of the application meta-data in
+    YAML format.
+    On APEX version 26.1 and after readable formats will be exported as
+    APEXlang.
+
+    [33m-split[0m|[33m-sp[0m
+    Split applications into multiple files
+
+    [33m-skipexportdate[0m|[33m-sked[0m
+    Skip export date in application export files
+
+    [33m-exppubreports[0m|[33m-exre[0m
+    Export all user saved public interactive reports 
+
+    [33m-expsavedreports[0m|[33m-exsr[0m
+    Export all user saved interactive reports 
+
+    [33m-expirnotif[0m|[33m-exir[0m
+    Export all interactive report notifications 
+
+    [33m-exptranslations[0m|[33m-extr[0m
+    Export the translation mappings and all text from the translation repository
+    
+
+    [33m-exporiginalids[0m|[33m-exoi[0m
+    Causes export to emit ids as they are in the system
+
+    [33m-expnosubscriptions[0m|[33m-exns[0m
+    Do not export references to subscribed components 
+
+    [33m-expcomments[0m|[33m-exco[0m
+    Export developer comments. Deprecated for APEX 26.1 or higher since comments
+    are included in export by default. Use DISABLE-EXP-COMMENTS option to omit
+    them.
+
+    [33m-disable-exp-comments[0m|[33m-dexc[0m
+    Disable comments in export in APEX 26.1 on higher. Use EXPCOMMENTS option on
+    earlier APEX versions.
+
+    [33m-expsupportingobjects[0m|[33m-exso[0m <expsupportingobjects> {I|N|Y} (Y)
+    Pass (Y)es, (N)o or (I)nstall to override the default 
+
+    [33m-exitwhendone[0m|[33m-exwd[0m
+    When true will cause SqlCl to exit upon completion of command.
+
+    [33m-expaclassignments[0m|[33m-exacl[0m
+    Export ACL User Role Assignments 
+
+    [33m-debug[0m|[33m-de[0m
+    Enable Debug output
+
+    [33m-expcomponents[0m|[33m-exc[0m <expcomponents>
+    Export application components. Parameters must be of form TYPE:ID, multiple
+    values must be quoted "TYPE:ID TYPE:ID" 
+
+    [33m-overwrite-files[0m|[33m-ovf[0m
+    Overwrite any files produced by this process if they already exist
+
+    [33m-expruntimeinstances[0m|[33m-exrin[0m <expruntimeinstances> {TASK|WORKFLOW,...} (NULL)
+    Comma separated list for which to export runtime instance data.
+    * WORKFLOW: Export workflow instances and task instances associated to a
+    workflow.
+    * TASK: Export task instances not associated to any workflow.
+
+    [33m-force[0m|[33m-f[0m
+    If the directory and files already exist in creation location, providing
+    this parameter will remove all existing directory and files. If exporting
+    component, only the component files will be
+    removed.
+
+  Examples:
+
+    Export all applications in the workspace with id is 1908816359534887.
+     [33mSQL> apex export-all-applications -workspaceid 1908816359534887[0m
+    
+    Export all applications in the workspace with id is 1908816359534887 in
+    APEXlang format.
+     [33mSQL> apex export-all-applications -workspaceid 1908816359534887 -exptype
+    APEXLANG[0m
+    
+
+
+  [1mGENERATE[0m
+
+  Generates starter application in APEXlang format.
+
+  Usage:
+
+    [33mgenerate[0m|[33mgen[0m {OPTIONS}
+
+  Options:
+
+    [33m-dir[0m|[33m-di[0m <dir> {PATH}
+    The directory to generate starter application files
+
+    [33m-workspaceid[0m|[33m-woi[0m <workspaceid> {INTEGER}
+    Specify the workspace id which will retrieve the workspace name to be put in
+    the generated default deployment file
+
+    [33m-workspace[0m|[33m-ws[0m <workspace>
+    The workspace name used for generate, validate or import commands if
+    multiple workspaces are available with current connection. If workspace id
+    option is also provided, that value will be used instead of this option.
+
+    [33m-id[0m|[33m-id[0m <id> {INTEGER}
+    Specify the application id that will be put in the generated default
+    deployment file
+
+    [33m-name[0m|[33m-n[0m <name>
+    Specify the application name that will be used in the generated application
+    files instead of the default
+
+    [33m-alias[0m|[33m-al[0m <alias>
+    Specify the application alias that will be used in the generated application
+    files instead of the default
+
+    [33m-schema[0m|[33m-sch[0m <schema>
+    Specify the parsing schema that will be put in the generated default
+    deployment file
+
+    [33m-force[0m|[33m-f[0m
+    If the directory and files already exist in creation location, providing
+    this parameter will remove all existing directory and files. If exporting
+    component, only the component files will be removed.
+
+  Examples:
+
+    Generate starter application in current directory.
+      [33mSQL> apex generate[0m
+    
+    Generate starter application in specified directory.
+      [33mSQL> apex generate -dir ./projects[0m
+    
+    Generate starter application with specific name.
+      [33mSQL> apex generate -name "Hello World"[0m
+    
+    Generate with specific workspace id.
+      [33mSQL> apex generate -workspaceid 90000[0m
+    
+
+
+  [1mVALIDATE[0m
+
+  Validates that the APEXlang input can be compiled. When no input path is
+  provided, defaults to using current directory.
+
+  Usage:
+
+    [33mvalidate[0m|[33mval[0m {OPTIONS}
+
+  Options:
+
+    [33m-input[0m|[33m-i[0m <input>
+    The path to the APEXlang input to validate. Input must be a path to a
+    directory, zip or APEXlang file. APEXlang file input must define the full
+    APEX application.
+
+    [33m-workspaceid[0m|[33m-woi[0m <workspaceid> {INTEGER}
+    The workspace id used for the validation process if multiple workspaces are
+    available with current connection.
+
+    [33m-workspace[0m|[33m-ws[0m <workspace>
+    The workspace name used for generate, validate or import commands if
+    multiple workspaces are available with current connection. If workspace id
+    option is also provided, that value will be used instead of this option.
+
+    [33m-deployment[0m|[33m-d[0m <deployment>
+    Specify the path to the deployment file to use for import.
+
+    [33m-debug[0m|[33m-de[0m
+    Enable Debug output
+
+  Examples:
+
+    Validate current directory.
+      [33mSQL> apex validate[0m
+    
+    Validate directory.
+      [33mSQL> apex validate -input ./projects/brookstrut[0m
+    
+    Validate zip file
+      [33mSQL> apex validate -input ./brookstrut.zip[0m
+    
+    Validate APEXlang file.
+      [33mSQL> apex validate -input ./application.apx[0m
+    
+    Validate with specific workspace id.
+      [33mSQL> apex validate -input ./projects/brookstrut -workspaceid 90000[0m
+    
+
+
+  [1mIMPORT[0m
+
+  Imports the APEXlang input using current connection. When no input path is
+  provided, defaults to using current directory.
+
+  Usage:
+
+    [33mimport[0m|[33mimp[0m {OPTIONS}
+
+  Options:
+
+    [33m-input[0m|[33m-i[0m <input>
+    The path to the APEXlang input to be imported. Can be directory, zip file or
+    single APEXlang file containing the entire app.
+
+    [33m-workspaceid[0m|[33m-woi[0m <workspaceid> {INTEGER}
+    The workspace id used for the import process if multiple workspaces are
+    available with current connection.
+
+    [33m-workspace[0m|[33m-ws[0m <workspace>
+    The workspace name used for generate, validate or import commands if
+    multiple workspaces are available with current connection. If workspace id
+    option is also provided, that value will be used instead of this option.
+
+    [33m-id[0m|[33m-id[0m <id> {INTEGER}
+    Override the application id in the APEXlang input that the APEX application
+    will use on import.
+
+    [33m-schema[0m|[33m-sch[0m <schema>
+    Override the application schema in the APEXlang input that the APEX
+    application will use on import.
+
+    [33m-name[0m|[33m-n[0m <name>
+    Override the application name in the APEXlang input that the APEX
+    application will use on import.
+
+    [33m-alias[0m|[33m-al[0m <alias>
+    Override the alias in the APEXlang input that the APEX application will use
+    on import.
+
+    [33m-image-prefix[0m|[33m-impr[0m <image-prefix>
+    Override the image prefix in the APEXlang input that the APEX application
+    will use on import.
+
+    [33m-proxy[0m|[33m-pr[0m <proxy>
+    Override the application proxy in the APEXlang input that the APEX
+    application will use on import.
+
+    [33m-deployment[0m|[33m-d[0m <deployment>
+    Specify the path to the deployment file to use for import.
+
+    [33m-debug[0m|[33m-de[0m
+    Enable Debug output
+
+  Examples:
+
+    Import current directory.
+      [33mSQL> apex import[0m
+    
+    Import directory.
+      [33mSQL> apex import -input ./projects/brookstrut[0m
+    
+    Import zip file
+      [33mSQL> apex import -input ./brookstrut.zip[0m
+    
+    Import APEXlang file.
+      [33mSQL> apex import -input ./application.apx[0m
+    
+    Import under different application id.
+      [33mSQL> apex import -input ./projects/brookstrut -id 1001[0m
+    
+    Import with specific workspace id.
+      [33mSQL> apex import -input ./projects/brookstrut -workspaceid 90000[0m
+    
+
+Examples:
+
+  Export an application with the application id is 1234.
+    [33mSQL> apex export -applicationid 1234[0m
+  
+  Export all applications in the workspace with id is 1908816359534887.
+    [33mSQL> apex export -workspaceid 1908816359534887[0m
+  
+  To export an application as a directory with each application component split
+  into a separate file, use the apex export command and include the application
+  ID and the -split option.
+    [33mSQL> apex export -applicationid 1234 -split[0m
+  
+  To export an application in APEXlang format, use the apex export command,
+  include the application ID and set -exptype to APEXLANG.
+    [33mSQL> apex export -applicationid 1234 -exptype APEXLANG[0m
+  
+  Lists applications installed in the database.
+    [33mSQL> apex list[0m
+  Reports APEX application usage from APEX_WORKSPACE_LOG_SUMMARY.
+    [33mSQL> apex log[0m 

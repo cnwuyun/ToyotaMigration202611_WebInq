@@ -1,0 +1,205 @@
+lov xxso-buying-and-selling-cls (
+    name: XXSO_BUYING_AND_SELLING_CLS
+    source {
+        type: sqlQuery
+        sqlQuery:
+            ```sql
+            select lookup_code,
+                   meaning
+              from fnd_lookup_values
+             where lookup_type = 'XXSO_BUYING_AND_SELLING_CLS'
+               and enabled_flag = 'Y'
+             order by display_sequence, lookup_code
+            ```
+    }
+    columnMapping {
+        display: MEANING
+        return: LOOKUP_CODE
+    }
+)
+
+lov xxso-payment-deliverys-status (
+    name: XXSO_PAYMENT_DELIVERYS_STATUS
+    source {
+        type: sqlQuery
+        sqlQuery:
+            ```sql
+            select lookup_code,
+                   meaning
+              from fnd_lookup_values
+             where lookup_type = 'XXSO_PAYMENT_DELIVERYS_STATUS'
+               and enabled_flag = 'Y'
+             order by display_sequence, lookup_code
+            ```
+    }
+    columnMapping {
+        display: MEANING
+        return: LOOKUP_CODE
+    }
+)
+
+lov xxpo-multiple-com-odr-cls (
+    name: XXPO_MULTIPLE_COM_ODR_CLS
+    source {
+        type: sqlQuery
+        sqlQuery:
+            ```sql
+            select lookup_code,
+                   meaning
+              from fnd_lookup_values
+             where lookup_type = 'XXPO_MULTIPLE_COM_ODR_CLS'
+               and enabled_flag = 'Y'
+             order by display_sequence, lookup_code
+            ```
+    }
+    columnMapping {
+        display: MEANING
+        return: LOOKUP_CODE
+    }
+)
+
+lov xxso-supplier-610a (
+    name: XXSO_SUPPLIER_610A
+    source {
+        type: sqlQuery
+        sqlQuery:
+            ```sql
+            select supplier_code,
+                   supplier_name
+              from xxso_supplier_all_v
+             where enabled_flag = 'Y'
+               and (   xxso_so_610a_auth_pkg.is_tmc_user = 'Y'
+                    or supplier_code = xxso_so_610a_auth_pkg.my_supplier_code )
+             order by supplier_code
+            ```
+    }
+    columnMapping {
+        display: SUPPLIER_NAME
+        return: SUPPLIER_CODE
+    }
+)
+
+lov xxso-brought-in-610a (
+    name: XXSO_BROUGHT_IN_610A
+    source {
+        type: sqlQuery
+        sqlQuery:
+            ```sql
+            select brought_in_code,
+                   brought_in_name
+              from xxso_brought_in_lookup
+             where enabled_flag = 'Y'
+             order by brought_in_code
+            ```
+    }
+    columnMapping {
+        display: BROUGHT_IN_NAME
+        return: BROUGHT_IN_CODE
+    }
+)
+
+lov xxso-procurement-group-610a (
+    name: XXSO_PROCUREMENT_GROUP_610A
+    source {
+        type: sqlQuery
+        sqlQuery:
+            ```sql
+            select distinct
+                   procurement_group_code as code,
+                   procurement_group_code as name
+              from xxso_payment_deliverys_sum
+             where procurement_group_code is not null
+             order by procurement_group_code
+            ```
+    }
+    columnMapping {
+        display: NAME
+        return: CODE
+    }
+)
+
+lov xxso-procurement-person-610a (
+    name: XXSO_PROCUREMENT_PERSON_610A
+    source {
+        type: sqlQuery
+        sqlQuery:
+            ```sql
+            select distinct
+                   procurement_personnel_code as code,
+                   procurement_personnel_code as name
+              from xxso_payment_deliverys_sum
+             where procurement_personnel_code is not null
+             order by procurement_personnel_code
+            ```
+    }
+    columnMapping {
+        display: NAME
+        return: CODE
+    }
+)
+
+lov xxso-furnishing-group-610a (
+    name: XXSO_FURNISHING_GROUP_610A
+    source {
+        type: sqlQuery
+        sqlQuery:
+            ```sql
+            select distinct
+                   furnishing_group as code,
+                   furnishing_group as name
+              from xxso_payment_deliverys_sum
+             where furnishing_group is not null
+             order by furnishing_group
+            ```
+    }
+    columnMapping {
+        display: NAME
+        return: CODE
+    }
+)
+
+lov xxso-furnished-place-610a (
+    name: XXSO_FURNISHED_PLACE_610A
+    source {
+        type: sqlQuery
+        sqlQuery:
+            ```sql
+            select supply_dest_code,
+                   supply_dest_name
+              from xxso_supply_dest_all_v
+             where enabled_flag = 'Y'
+               and (   xxso_so_610a_auth_pkg.is_tmc_user = 'Y'
+                    or supply_dest_code = xxso_so_610a_auth_pkg.my_supply_dest_code )
+             order by supply_dest_code
+            ```
+    }
+    columnMapping {
+        display: SUPPLY_DEST_NAME
+        return: SUPPLY_DEST_CODE
+    }
+)
+
+lov xxso-warehouse-610a (
+    name: XXSO_WAREHOUSE_610A
+    source {
+        type: sqlQuery
+        sqlQuery:
+            ```sql
+            select m.secondary_inventory_name as code,
+                   nvl(m.description, m.secondary_inventory_name) as name
+              from mtl_secondary_inventories m
+             where m.disable_date is null
+             union
+            select l.lookup_code,
+                   l.meaning
+              from fnd_lookup_values l
+             where l.lookup_type = 'XXSO_MATERIALS_PARTNO'
+               and l.enabled_flag = 'Y'
+             order by 1
+            ```
+    }
+    columnMapping {
+        display: NAME
+        return: CODE
+    }
+)

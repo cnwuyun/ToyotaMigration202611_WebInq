@@ -1,0 +1,15 @@
+﻿sql.exe : Picked up JAVA_TOOL_OPTIONS: -XX:TieredStopAtLevel=1 -XX:+UseSerialGC -Xshare:auto
+At line:17 char:395
++ ... d;`nexit" | & "C:\EEE\tools\sqlcl\bin\sql.exe" -name toyota_maps -s 2 ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_...GC -Xshare:auto:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+Error starting at line : 4 in command -
+select application_id, application_name, alias, owner, page_count, build_status, last_updated_on from apex_applications where alias = 'XXSO-SO-610A'
+Error at Command Line : 4 Column : 56
+Error report -
+SQL Error: ORA-00904: "PAGE_COUNT": invalid identifier
+Help: https://docs.oracle.com/error-help/db/ora-00904/
+

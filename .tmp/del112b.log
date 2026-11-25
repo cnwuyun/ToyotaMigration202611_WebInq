@@ -1,0 +1,20 @@
+﻿sql.exe : Picked up JAVA_TOOL_OPTIONS: -XX:TieredStopAtLevel=1 -XX:+UseSerialGC -Xshare:auto
+At line:43 char:6
++ "@ | & "C:\EEE\tools\sqlcl\bin\sql.exe" -name toyota_maps -s 2>&1 | O ...
++      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_...GC -Xshare:auto:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+NG: apex_util.delete_application -> ORA-06550: line 1, column 17:
+PLS-00302: component 'DELETE_APPLICATION' must be declared
+NG: wwv_flow_api.delete_application -> ORA-06550: line 1, column 20:
+PLS-00302: component 'DELETE_APPLICATION' must be declared
+NG: apex_application_util.delete_application -> ORA-06550: line 1, column 7:
+PLS-00201: identifier 'APEX_APPLICATION_UTIL.DELETE_APPLICATION' must be declared
+NG: apex_app_util.delete_application -> ORA-06550: line 1, column 7:
+PLS-00201: identifier 'APEX_APP_UTIL.DELETE_APPLICATION' must be declared
+
+
+   [1mAPPLICATION_ID[m [1mALIAS[m           
+_________________ _______________ 
+              112 XXSO-SO-610A    

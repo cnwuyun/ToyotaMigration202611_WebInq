@@ -1,0 +1,16 @@
+﻿sql.exe : Picked up JAVA_TOOL_OPTIONS: -XX:TieredStopAtLevel=1 -XX:+UseSerialGC -Xshare:auto
+At line:17 char:295
++ ... d;`nexit" | & "C:\EEE\tools\sqlcl\bin\sql.exe" -name toyota_maps -s 2 ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_...GC -Xshare:auto:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+'-overwrite' at column 127: Option not recognized
+
+   [1mAPPLICATION_ID[m [1mALIAS[m                        
+_________________ ____________________________ 
+              101 MAPS                         
+              102 EMPLOYEE-MANAGEMENT          
+              103 MAPS103                      
+              105 PRICING_APPROVAL_WORKFLOW    
+              112 XXSO-SO-610A                 

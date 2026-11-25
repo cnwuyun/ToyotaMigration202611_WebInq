@@ -1,0 +1,18 @@
+﻿sql.exe : Picked up JAVA_TOOL_OPTIONS: -XX:TieredStopAtLevel=1 -XX:+UseSerialGC -Xshare:auto
+At line:17 char:261
++ ... d;`nexit" | & "C:\EEE\tools\sqlcl\bin\sql.exe" -name toyota_maps -s 2 ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_...GC -Xshare:auto:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+        [1mWORKSPACE_ID[m [1mWORKSPACE[m    
+____________________ ____________ 
+   21933401863096857 MAPS         
+
+   [1mAPPLICATION_ID[m [1mAPPLICATION_NAME[m    [1mALIAS[m                        [1mOWNER[m        [1mBUILD_STATUS[m       
+_________________ ___________________ ____________________________ ____________ __________________ 
+              101 MAPS                MAPS                         WKSP_MAPS    Run and Develop    
+              102 休暇管理システム            EMPLOYEE-MANAGEMENT          WKSP_MAPS    Run and Develop    
+              103 MAPS_WUYUN          MAPS103                      WKSP_MAPS    Run and Develop    
+              105 価格決裁ワークフロー          PRICING_APPROVAL_WORKFLOW    WKSP_MAPS    Run and Develop    

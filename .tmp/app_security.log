@@ -1,0 +1,31 @@
+﻿sql.exe : Picked up JAVA_TOOL_OPTIONS: -XX:TieredStopAtLevel=1 -XX:+UseSerialGC -Xshare:auto
+At line:26 char:6
++ "@ | & "C:\EEE\tools\sqlcl\bin\sql.exe" -name toyota_maps -s 2>&1 | O ...
++      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_...GC -Xshare:auto:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+   [1mPAGE_ID[m [1mPAGE_ALIAS[m                 [1mPAGE_NAME[m      
+__________ __________________________ ______________ 
+         0                            Global Page    
+         1 PAYMENT-DELIVERY-SEARCH    支払納品情報検索       
+      9999 LOGIN                      Login Page     
+
+   [1mPAGE_ID[m [1mPAGE_ALIAS[m                 
+__________ __________________________ 
+         1 PAYMENT-DELIVERY-SEARCH    
+
+Error starting at line : 6 in command -
+select authorization_scheme, page_id from apex_application_page_authorizations where application_id = 112
+Error at Command Line : 6 Column : 43
+Error report -
+SQL Error: ORA-00942: table or view "WKSP_MAPS"."APEX_APPLICATION_PAGE_AUTHORIZATIONS" does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/
+
+Error starting at line : 7 in command -
+select authentication_scheme_name, is_current from apex_application_authentication where application_id = 112
+Error at Command Line : 7 Column : 52
+Error report -
+SQL Error: ORA-00942: table or view "WKSP_MAPS"."APEX_APPLICATION_AUTHENTICATION" does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/

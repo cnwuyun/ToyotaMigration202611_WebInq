@@ -1,0 +1,21 @@
+﻿sql.exe : Picked up JAVA_TOOL_OPTIONS: -XX:TieredStopAtLevel=1 -XX:+UseSerialGC -Xshare:auto
+At line:17 char:280
++ ... y;`nexit" | & "C:\EEE\tools\sqlcl\bin\sql.exe" -name toyota_maps -s 2 ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_...GC -Xshare:auto:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+Error starting at line : 5 in command -
+select workspace_id, workspace_name from apex_workspaces
+Error at Command Line : 5 Column : 22
+Error report -
+SQL Error: ORA-00904: "WORKSPACE_NAME": invalid identifier
+Help: https://docs.oracle.com/error-help/db/ora-00904/
+
+Error starting at line : 6 in command -
+select application_id, alias, name, last_updated_on from apex_applications order by last_updated_on desc fetch first 8 rows only
+Error at Command Line : 6 Column : 31
+Error report -
+SQL Error: ORA-00904: "NAME": invalid identifier
+Help: https://docs.oracle.com/error-help/db/ora-00904/

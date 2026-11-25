@@ -1,0 +1,1432 @@
+page 1 (
+    name: 支払納品情報検索
+    alias: PAYMENT-DELIVERY-SEARCH
+    title: 支払納品情報検索
+    appearance {
+        pageTemplate: @/standard
+        templateOptions: #DEFAULT#
+    }
+    navigation {
+        cursorFocus: doNotFocusCursor
+    }
+    security {
+        pageAccessProtection: argumentsMustHaveChecksum
+        authorizationScheme: @is-payment-delivery-user
+        formAutoComplete: false
+    }
+
+    region payment-delivery-search-header (
+        name: 支払納品情報検索
+        title: 支払納品情報検索
+        type: breadcrumb
+        source {
+            breadcrumb: @breadcrumb
+        }
+        layout {
+            sequence: 10
+            slot: breadcrumbBar
+        }
+        appearance {
+            template: @/title-bar
+            templateOptions: #DEFAULT#
+        }
+        componentAppearance {
+            breadcrumbTemplate: @/breadcrumb
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region search-conditions (
+        name: 検索条件
+        title: 検索条件
+        type: staticContent
+        layout {
+            sequence: 20
+            slot: body
+        }
+        appearance {
+            template: @/standard
+            templateOptions: #DEFAULT#
+        }
+    )
+
+    region payment-delivery-report (
+        name: 支払納品情報一覧
+        title: 支払納品情報一覧
+        type: interactiveReport
+        source {
+            location: localDatabase
+            type: sqlQuery
+            sqlQuery:
+                ```sql
+                select v.y_item_no,
+                       v.item_name,
+                       v.supplier_code,
+                       v.supplier_name,
+                       v.buying_and_selling_class,
+                       v.buying_and_selling_class_mean,
+                       v.brought_in_code,
+                       v.brought_in_name,
+                       v.brought_in_factory_class,
+                       v.maker_code,
+                       v.maker_name,
+                       v.delivery_quantity_disp,
+                       v.delivery_date,
+                       v.delivery_number,
+                       v.processing_date,
+                       v.status,
+                       v.status_meaning,
+                       v.period_class,
+                       v.procurement_group_code,
+                       v.procurement_personnel_code,
+                       v.subcontract_act_cls,
+                       v.exclusive_flg_mean,
+                       v.spec,
+                       v.tool_no,
+                       v.purchase_furnished_price_disp,
+                       v.purchase_payment_money_disp,
+                       v.control_number,
+                       v.arrangement_serial_no,
+                       v.recorded_ym,
+                       v.early_and_late_class,
+                       v.early_and_late_class_mean,
+                       v.multiple_suppliers_class,
+                       v.multiple_suppliers_class_mean,
+                       v.update_fnd_user,
+                       v.update_date,
+                       v.revate_unit_price_disp,
+                       v.payment_furnished_unit_price_disp,
+                       v.revate_amount_of_money_disp,
+                       v.payment_furnished_amount_disp,
+                       v.currency_code,
+                       v.furnishing_group,
+                       v.furnished_place_code,
+                       v.furnished_name,
+                       v.furnished_industrial_type,
+                       v.wh_code,
+                       v.warehouse_name,
+                       v.warehouse_industrial_class,
+                       v.unit_price_class,
+                       v.unit_price_class_mean,
+                       v.rep_pattern,
+                       v.rep_pattern_mean,
+                       v.repairable_flag,
+                       v.repairable_flag_mean,
+                       v.last_purchase_furnish_price_disp,
+                       v.last_revate_unit_price_disp,
+                       v.last_payment_furnished_price_disp,
+                       v.data_type_mean,
+                       v.back_correction_flag_mean,
+                       v.total_cls_mean,
+                       v.order_date
+                  from xxso_so_webinq_610a_v v
+                 where (:P1_DELIVERY_DATE_FROM is null
+                        or v.delivery_date >= to_date(:P1_DELIVERY_DATE_FROM, 'YYYY/MM/DD'))
+                   and (:P1_DELIVERY_DATE_TO is null
+                        or v.delivery_date <= to_date(:P1_DELIVERY_DATE_TO, 'YYYY/MM/DD'))
+                   and (:P1_STATUS is null or lower(v.status) = lower(:P1_STATUS))
+                   and (:P1_Y_ITEM_NO is null
+                        or lower(v.y_item_no) like '%' || lower(:P1_Y_ITEM_NO) || '%')
+                   and (:P1_SUPPLIER_CODE is null or lower(v.supplier_code) = lower(:P1_SUPPLIER_CODE))
+                   and (:P1_BUYING_AND_SELLING_CLASS is null
+                        or lower(v.buying_and_selling_class) = lower(:P1_BUYING_AND_SELLING_CLASS))
+                   and (:P1_DELIVERY_NUMBER is null
+                        or lower(v.delivery_number) like '%' || lower(:P1_DELIVERY_NUMBER) || '%')
+                   and (:P1_PROCUREMENT_GROUP_CODE is null
+                        or lower(v.procurement_group_code) = lower(:P1_PROCUREMENT_GROUP_CODE))
+                   and (:P1_PROCUREMENT_PERSONNEL_CODE is null
+                        or lower(v.procurement_personnel_code) = lower(:P1_PROCUREMENT_PERSONNEL_CODE))
+                   and (:P1_MULTIPLE_SUPPLIERS_CLASS is null
+                        or lower(v.multiple_suppliers_class) = lower(:P1_MULTIPLE_SUPPLIERS_CLASS))
+                   and (:P1_ARRANGEMENT_SERIAL_NO is null
+                        or lower(v.arrangement_serial_no) = lower(:P1_ARRANGEMENT_SERIAL_NO))
+                   and (:P1_FURNISHING_GROUP is null
+                        or lower(v.furnishing_group) = lower(:P1_FURNISHING_GROUP))
+                   and (:P1_FURNISHED_PLACE_CODE is null
+                        or lower(v.furnished_place_code) = lower(:P1_FURNISHED_PLACE_CODE))
+                   and (:P1_WH_CODE is null or lower(v.wh_code) = lower(:P1_WH_CODE))
+                   and (:P1_BROUGHT_IN_CODE is null
+                        or lower(v.brought_in_code) = lower(:P1_BROUGHT_IN_CODE))
+                   and xxso_so_610a_auth_pkg.scope_ok(v.supplier_code, v.furnished_place_code) = 'Y'
+                 order by v.delivery_date desc, v.delivery_number, v.arrangement_serial_no
+                ```
+            pageItemsToSubmit: P1_DELIVERY_DATE_FROM,P1_DELIVERY_DATE_TO,P1_STATUS,P1_Y_ITEM_NO,P1_SUPPLIER_CODE,P1_BUYING_AND_SELLING_CLASS,P1_DELIVERY_NUMBER,P1_PROCUREMENT_GROUP_CODE,P1_PROCUREMENT_PERSONNEL_CODE,P1_MULTIPLE_SUPPLIERS_CLASS,P1_ARRANGEMENT_SERIAL_NO,P1_FURNISHING_GROUP,P1_FURNISHED_PLACE_CODE,P1_WH_CODE,P1_BROUGHT_IN_CODE
+        }
+        layout {
+            sequence: 30
+            slot: body
+        }
+        appearance {
+            template: @/standard
+            templateOptions: #DEFAULT#
+        }
+        messages {
+            whenNoDataFound: 該当する支払納品情報はありません。
+        }
+        pagination {
+            type: rowRangesXToYOfZ
+        }
+
+        column Y_ITEM_NO (
+            type: plainText
+            heading {
+                heading: Y品番
+            }
+            layout {
+                sequence: 10
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column ITEM_NAME (
+            type: plainText
+            heading {
+                heading: 品名
+            }
+            layout {
+                sequence: 20
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column SUPPLIER_CODE (
+            type: plainText
+            heading {
+                heading: 仕入先コード
+            }
+            layout {
+                sequence: 30
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column SUPPLIER_NAME (
+            type: plainText
+            heading {
+                heading: 仕入先名称
+            }
+            layout {
+                sequence: 40
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column BUYING_AND_SELLING_CLASS (
+            type: plainText
+            heading {
+                heading: 売買区分
+            }
+            layout {
+                sequence: 50
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column BUYING_AND_SELLING_CLASS_MEAN (
+            type: plainText
+            heading {
+                heading: 売買区分名称
+            }
+            layout {
+                sequence: 60
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column BROUGHT_IN_CODE (
+            type: plainText
+            heading {
+                heading: 持込先コード
+            }
+            layout {
+                sequence: 70
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column BROUGHT_IN_NAME (
+            type: plainText
+            heading {
+                heading: 持込先名称
+            }
+            layout {
+                sequence: 80
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column BROUGHT_IN_FACTORY_CLASS (
+            type: plainText
+            heading {
+                heading: 持込先工場区分
+            }
+            layout {
+                sequence: 90
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column MAKER_CODE (
+            type: plainText
+            heading {
+                heading: メーカーコード
+            }
+            layout {
+                sequence: 100
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column MAKER_NAME (
+            type: plainText
+            heading {
+                heading: メーカー名称
+            }
+            layout {
+                sequence: 110
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column DELIVERY_QUANTITY_DISP (
+            type: richText
+            heading {
+                heading: 納入数量
+            }
+            layout {
+                sequence: 120
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column DELIVERY_DATE (
+            type: plainText
+            heading {
+                heading: 納入年月日
+            }
+            layout {
+                sequence: 130
+            }
+            source {
+                dataType: DATE
+            }
+        )
+
+        column DELIVERY_NUMBER (
+            type: plainText
+            heading {
+                heading: 納入番号
+            }
+            layout {
+                sequence: 140
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column PROCESSING_DATE (
+            type: plainText
+            heading {
+                heading: 処理年月日
+            }
+            layout {
+                sequence: 150
+            }
+            source {
+                dataType: DATE
+            }
+        )
+
+        column STATUS (
+            type: plainText
+            heading {
+                heading: ステータス
+            }
+            layout {
+                sequence: 160
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column STATUS_MEANING (
+            type: plainText
+            heading {
+                heading: ステータス名称
+            }
+            layout {
+                sequence: 170
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column PERIOD_CLASS (
+            type: plainText
+            heading {
+                heading: 期間区分
+            }
+            layout {
+                sequence: 180
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column PROCUREMENT_GROUP_CODE (
+            type: plainText
+            heading {
+                heading: 調達係コード
+            }
+            layout {
+                sequence: 190
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column PROCUREMENT_PERSONNEL_CODE (
+            type: plainText
+            heading {
+                heading: 調達担当コード
+            }
+            layout {
+                sequence: 200
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column SUBCONTRACT_ACT_CLS (
+            type: plainText
+            heading {
+                heading: 下請法対象区分
+            }
+            layout {
+                sequence: 210
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column EXCLUSIVE_FLG_MEAN (
+            type: plainText
+            heading {
+                heading: 下請法対象区分名称
+            }
+            layout {
+                sequence: 220
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column SPEC (
+            type: plainText
+            heading {
+                heading: 仕様
+            }
+            layout {
+                sequence: 230
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column TOOL_NO (
+            type: plainText
+            heading {
+                heading: ツールNo
+            }
+            layout {
+                sequence: 240
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column PURCHASE_FURNISHED_PRICE_DISP (
+            type: richText
+            heading {
+                heading: 購入・支給単価
+            }
+            layout {
+                sequence: 250
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column PURCHASE_PAYMENT_MONEY_DISP (
+            type: richText
+            heading {
+                heading: 購入・支給金額
+            }
+            layout {
+                sequence: 260
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column CONTROL_NUMBER (
+            type: plainText
+            heading {
+                heading: 管理番号
+            }
+            layout {
+                sequence: 270
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column ARRANGEMENT_SERIAL_NO (
+            type: plainText
+            heading {
+                heading: 手配連番
+            }
+            layout {
+                sequence: 280
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column RECORDED_YM (
+            type: plainText
+            heading {
+                heading: 計上年月
+            }
+            layout {
+                sequence: 290
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column EARLY_AND_LATE_CLASS (
+            type: plainText
+            heading {
+                heading: 前納後納区分
+            }
+            layout {
+                sequence: 300
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column EARLY_AND_LATE_CLASS_MEAN (
+            type: plainText
+            heading {
+                heading: 前納後納区分名称
+            }
+            layout {
+                sequence: 310
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column MULTIPLE_SUPPLIERS_CLASS (
+            type: plainText
+            heading {
+                heading: 複社発注区分
+            }
+            layout {
+                sequence: 320
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column MULTIPLE_SUPPLIERS_CLASS_MEAN (
+            type: plainText
+            heading {
+                heading: 複社発注区分名称
+            }
+            layout {
+                sequence: 330
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column UPDATE_FND_USER (
+            type: plainText
+            heading {
+                heading: 更新者
+            }
+            layout {
+                sequence: 340
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column UPDATE_DATE (
+            type: plainText
+            heading {
+                heading: 更新日付
+            }
+            layout {
+                sequence: 350
+            }
+            source {
+                dataType: DATE
+            }
+        )
+
+        column REVATE_UNIT_PRICE_DISP (
+            type: richText
+            heading {
+                heading: 還元金単価
+            }
+            layout {
+                sequence: 360
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column PAYMENT_FURNISHED_UNIT_PRICE_DISP (
+            type: richText
+            heading {
+                heading: 支払・支給単価
+            }
+            layout {
+                sequence: 370
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column REVATE_AMOUNT_OF_MONEY_DISP (
+            type: richText
+            heading {
+                heading: 還元金金額
+            }
+            layout {
+                sequence: 380
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column PAYMENT_FURNISHED_AMOUNT_DISP (
+            type: richText
+            heading {
+                heading: 支払・支給金額
+            }
+            layout {
+                sequence: 390
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column CURRENCY_CODE (
+            type: plainText
+            heading {
+                heading: 通貨コード
+            }
+            layout {
+                sequence: 400
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column FURNISHING_GROUP (
+            type: plainText
+            heading {
+                heading: 支給係コード
+            }
+            layout {
+                sequence: 410
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column FURNISHED_PLACE_CODE (
+            type: plainText
+            heading {
+                heading: 支給先コード
+            }
+            layout {
+                sequence: 420
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column FURNISHED_NAME (
+            type: plainText
+            heading {
+                heading: 支給先名称
+            }
+            layout {
+                sequence: 430
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column FURNISHED_INDUSTRIAL_TYPE (
+            type: plainText
+            heading {
+                heading: 支給先業態区分
+            }
+            layout {
+                sequence: 440
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column WH_CODE (
+            type: plainText
+            heading {
+                heading: 倉庫コード
+            }
+            layout {
+                sequence: 450
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column WAREHOUSE_NAME (
+            type: plainText
+            heading {
+                heading: 倉庫名称
+            }
+            layout {
+                sequence: 460
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column WAREHOUSE_INDUSTRIAL_CLASS (
+            type: plainText
+            heading {
+                heading: 倉庫業態区分
+            }
+            layout {
+                sequence: 470
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column UNIT_PRICE_CLASS (
+            type: plainText
+            heading {
+                heading: 単価区分
+            }
+            layout {
+                sequence: 480
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column UNIT_PRICE_CLASS_MEAN (
+            type: plainText
+            heading {
+                heading: 単価区分名称
+            }
+            layout {
+                sequence: 490
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column REP_PATTERN (
+            type: plainText
+            heading {
+                heading: 修理パターン
+            }
+            layout {
+                sequence: 500
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column REP_PATTERN_MEAN (
+            type: plainText
+            heading {
+                heading: 修理パターン名称
+            }
+            layout {
+                sequence: 510
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column REPAIRABLE_FLAG (
+            type: plainText
+            heading {
+                heading: 修理可否
+            }
+            layout {
+                sequence: 520
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column REPAIRABLE_FLAG_MEAN (
+            type: plainText
+            heading {
+                heading: 修理可否名称
+            }
+            layout {
+                sequence: 530
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column LAST_PURCHASE_FURNISH_PRICE_DISP (
+            type: richText
+            heading {
+                heading: 訂正前購入・支給単価
+            }
+            layout {
+                sequence: 540
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column LAST_REVATE_UNIT_PRICE_DISP (
+            type: richText
+            heading {
+                heading: 訂正前還元金単価
+            }
+            layout {
+                sequence: 550
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column LAST_PAYMENT_FURNISHED_PRICE_DISP (
+            type: richText
+            heading {
+                heading: 訂正前支払・支給単価
+            }
+            layout {
+                sequence: 560
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column DATA_TYPE_MEAN (
+            type: plainText
+            heading {
+                heading: データ種別名称
+            }
+            layout {
+                sequence: 570
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column BACK_CORRECTION_FLAG_MEAN (
+            type: plainText
+            heading {
+                heading: 訂正後データ名称
+            }
+            layout {
+                sequence: 580
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column TOTAL_CLS_MEAN (
+            type: plainText
+            heading {
+                heading: 合計区分名称
+            }
+            layout {
+                sequence: 590
+            }
+            source {
+                dataType: STRING
+            }
+        )
+
+        column ORDER_DATE (
+            type: plainText
+            heading {
+                heading: 発注日
+            }
+            layout {
+                sequence: 600
+            }
+            source {
+                dataType: DATE
+            }
+        )
+    )
+
+    button search (
+        buttonName: SEARCH
+        label: 検索
+        layout {
+            sequence: 10
+            region: @search-conditions
+            slot: regionBody
+        }
+        appearance {
+            buttonTemplate: @/text
+            hot: true
+        }
+        behavior {
+            action: submitPage
+            executeValidations: true
+        }
+    )
+
+    button clear (
+        buttonName: CLEAR
+        label: クリア
+        layout {
+            sequence: 20
+            region: @search-conditions
+            slot: regionBody
+        }
+        appearance {
+            buttonTemplate: @/text
+        }
+        behavior {
+            action: resetPage
+        }
+    )
+
+    pageItem P1_Y_ITEM_NO (
+        type: textField
+        label {
+            label: Y品番
+        }
+        layout {
+            sequence: 10
+            region: @search-conditions
+            slot: regionBody
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+            width: 8
+        }
+        validation {
+            maxLength: 40
+        }
+        help {
+            inlineHelpText: Y品番の一部一致で検索します。空欄の場合は条件に含めません。
+        }
+    )
+
+    pageItem P1_SUPPLIER_CODE (
+        type: popupLov
+        label {
+            label: 仕入先コード
+        }
+        lov {
+            type: sharedComponent
+            lov: @xxso-supplier-610a
+        }
+        layout {
+            sequence: 20
+            region: @search-conditions
+            slot: regionBody
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+            width: 8
+        }
+        default {
+            type: expression
+            plsqlExpression: xxso_so_610a_auth_pkg.my_supplier_code
+        }
+        readOnly {
+            type: expression
+            plsqlExpression: xxso_so_610a_auth_pkg.is_supplier_user = 'Y'
+        }
+    )
+
+    pageItem P1_BUYING_AND_SELLING_CLASS (
+        type: selectList
+        label {
+            label: 売買区分
+        }
+        lov {
+            type: sharedComponent
+            lov: @xxso-buying-and-selling-cls
+        }
+        layout {
+            sequence: 30
+            region: @search-conditions
+            slot: regionBody
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        help {
+            inlineHelpText: 売買区分（K＝購買 / U＝支給）で絞り込みます。支給（U）を選ぶと支給先・持込先の入力可否が切り替わります。
+        }
+    )
+
+    pageItem P1_DELIVERY_DATE_FROM (
+        type: datePicker
+        label {
+            label: 納入年月日（カラ）
+        }
+        layout {
+            sequence: 40
+            region: @search-conditions
+            slot: regionBody
+        }
+        appearance {
+            template: @/required
+            templateOptions: #DEFAULT#
+            width: 8
+            formatMask: YYYY/MM/DD
+        }
+        validation {
+            valueRequired: true
+        }
+        help {
+            inlineHelpText: 納入年月日の検索開始日を指定します。必須項目です。
+        }
+    )
+
+    pageItem P1_DELIVERY_DATE_TO (
+        type: datePicker
+        label {
+            label: 納入年月日（マデ）
+        }
+        layout {
+            sequence: 50
+            region: @search-conditions
+            slot: regionBody
+        }
+        appearance {
+            template: @/required
+            templateOptions: #DEFAULT#
+            width: 8
+            formatMask: YYYY/MM/DD
+        }
+        validation {
+            valueRequired: true
+        }
+        help {
+            inlineHelpText: 納入年月日の検索終了日を指定します。開始日以降の日付を指定してください。必須項目です。
+        }
+    )
+
+    pageItem P1_STATUS (
+        type: selectList
+        label {
+            label: ステータス
+        }
+        lov {
+            type: sharedComponent
+            lov: @xxso-payment-deliverys-status
+        }
+        layout {
+            sequence: 60
+            region: @search-conditions
+            slot: regionBody
+        }
+        appearance {
+            template: @/required
+            templateOptions: #DEFAULT#
+        }
+        validation {
+            valueRequired: true
+        }
+        help {
+            inlineHelpText: 支払納品情報のステータスで絞り込みます。必須項目です。
+        }
+    )
+
+    pageItem P1_DELIVERY_NUMBER (
+        type: textField
+        label {
+            label: 納入番号
+        }
+        layout {
+            sequence: 70
+            region: @search-conditions
+            slot: regionBody
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+            width: 8
+        }
+        validation {
+            maxLength: 40
+        }
+        help {
+            inlineHelpText: 納入番号の一部一致で検索します。空欄の場合は条件に含めません。
+        }
+    )
+
+    pageItem P1_PROCUREMENT_GROUP_CODE (
+        type: popupLov
+        label {
+            label: 調達係コード
+        }
+        lov {
+            type: sharedComponent
+            lov: @xxso-procurement-group-610a
+        }
+        layout {
+            sequence: 80
+            region: @search-conditions
+            slot: regionBody
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+            width: 8
+        }
+    )
+
+    pageItem P1_PROCUREMENT_PERSONNEL_CODE (
+        type: popupLov
+        label {
+            label: 調達担当コード
+        }
+        lov {
+            type: sharedComponent
+            lov: @xxso-procurement-person-610a
+        }
+        layout {
+            sequence: 90
+            region: @search-conditions
+            slot: regionBody
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+            width: 8
+        }
+    )
+
+    pageItem P1_MULTIPLE_SUPPLIERS_CLASS (
+        type: selectList
+        label {
+            label: 複社発注区分
+        }
+        lov {
+            type: sharedComponent
+            lov: @xxpo-multiple-com-odr-cls
+        }
+        layout {
+            sequence: 100
+            region: @search-conditions
+            slot: regionBody
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+        }
+        help {
+            inlineHelpText: 複社発注区分（複数仕入先からの発注有無）で絞り込みます。
+        }
+    )
+
+    pageItem P1_ARRANGEMENT_SERIAL_NO (
+        type: textField
+        label {
+            label: 手配連番
+        }
+        layout {
+            sequence: 110
+            region: @search-conditions
+            slot: regionBody
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+            width: 8
+        }
+        validation {
+            maxLength: 20
+        }
+        help {
+            inlineHelpText: 手配連番（手配単位の連番）で絞り込みます。空欄の場合は条件に含めません。
+        }
+    )
+
+    pageItem P1_FURNISHING_GROUP (
+        type: popupLov
+        label {
+            label: 支給係コード
+        }
+        lov {
+            type: sharedComponent
+            lov: @xxso-furnishing-group-610a
+        }
+        layout {
+            sequence: 120
+            region: @search-conditions
+            slot: regionBody
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+            width: 8
+        }
+    )
+
+    pageItem P1_FURNISHED_PLACE_CODE (
+        type: popupLov
+        label {
+            label: 支給先コード
+        }
+        lov {
+            type: sharedComponent
+            lov: @xxso-furnished-place-610a
+        }
+        layout {
+            sequence: 130
+            region: @search-conditions
+            slot: regionBody
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+            width: 8
+        }
+        default {
+            type: expression
+            plsqlExpression: xxso_so_610a_auth_pkg.my_supply_dest_code
+        }
+        readOnly {
+            type: expression
+            plsqlExpression: xxso_so_610a_auth_pkg.is_supply_dest_user = 'Y'
+        }
+    )
+
+    pageItem P1_WH_CODE (
+        type: popupLov
+        label {
+            label: 倉庫コード
+        }
+        lov {
+            type: sharedComponent
+            lov: @xxso-warehouse-610a
+        }
+        layout {
+            sequence: 140
+            region: @search-conditions
+            slot: regionBody
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+            width: 8
+        }
+    )
+
+    pageItem P1_BROUGHT_IN_CODE (
+        type: popupLov
+        label {
+            label: 持込先コード
+        }
+        lov {
+            type: sharedComponent
+            lov: @xxso-brought-in-610a
+        }
+        layout {
+            sequence: 150
+            region: @search-conditions
+            slot: regionBody
+        }
+        appearance {
+            template: @/optional
+            templateOptions: #DEFAULT#
+            width: 8
+        }
+    )
+
+    dynamicAction toggle-supply-dest-fields (
+        name: 売買区分による入力可否制御
+        execution {
+            sequence: 10
+        }
+        when {
+            event: change
+            selectionType: items
+            items: P1_BUYING_AND_SELLING_CLASS
+        }
+        action disable-supply-dest (
+            name: 支給先・支給係を無効化
+            action: disable
+            execution {
+                sequence: 10
+            }
+            affectedElements {
+                selectionType: items
+                items: P1_FURNISHING_GROUP,P1_FURNISHED_PLACE_CODE
+            }
+            clientSideCondition {
+                type: item=value
+                item: P1_BUYING_AND_SELLING_CLASS
+                value: U
+            }
+        )
+        action enable-supply-dest (
+            name: 支給先・支給係を有効化
+            action: enable
+            execution {
+                sequence: 20
+            }
+            affectedElements {
+                selectionType: items
+                items: P1_FURNISHING_GROUP,P1_FURNISHED_PLACE_CODE
+            }
+            clientSideCondition {
+                type: item!=value
+                item: P1_BUYING_AND_SELLING_CLASS
+                value: U
+            }
+        )
+        action disable-brought-in (
+            name: 持込先を無効化
+            action: disable
+            execution {
+                sequence: 30
+            }
+            affectedElements {
+                selectionType: items
+                items: P1_BROUGHT_IN_CODE
+            }
+            clientSideCondition {
+                type: item=value
+                item: P1_BUYING_AND_SELLING_CLASS
+                value: U
+            }
+        )
+        action enable-brought-in (
+            name: 持込先を有効化
+            action: enable
+            execution {
+                sequence: 40
+            }
+            affectedElements {
+                selectionType: items
+                items: P1_BROUGHT_IN_CODE
+            }
+            clientSideCondition {
+                type: item!=value
+                item: P1_BUYING_AND_SELLING_CLASS
+                value: U
+            }
+        )
+    )
+
+    validation VAL_DELIVERY_DATE_RANGE (
+        name: 納入年月日範囲チェック
+        execution {
+            sequence: 10
+        }
+        validation {
+            type: functionBodyReturningBoolean
+            plsqlFunctionBody:
+                ```plsql
+                return to_date( :P1_DELIVERY_DATE_FROM, 'YYYY/MM/DD' )
+                       <= to_date( :P1_DELIVERY_DATE_TO, 'YYYY/MM/DD' );
+                ```
+        }
+        error {
+            errorMessage: 納入年月日（カラ）は納入年月日（マデ）以前の日付を指定してください。
+            associatedItem: @P1_DELIVERY_DATE_TO
+        }
+    )
+
+)

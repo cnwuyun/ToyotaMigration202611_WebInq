@@ -1,0 +1,148 @@
+{
+  "sourceEvidence": {
+    "requirements": [
+      { "id": "FR-001", "text": "検索条件 Y品番", "status": "covered" },
+      { "id": "FR-002", "text": "検索条件 仕入先コード", "status": "covered" },
+      { "id": "FR-003", "text": "検索条件 売買区分", "status": "covered" },
+      { "id": "FR-004", "text": "検索条件 納入年月日カラ（必須）", "status": "covered" },
+      { "id": "FR-005", "text": "検索条件 納入年月日マデ（必須）", "status": "covered" },
+      { "id": "FR-006", "text": "検索条件 納入番号", "status": "covered" },
+      { "id": "FR-007", "text": "検索条件 ステータス（必須）", "status": "covered" },
+      { "id": "FR-008", "text": "検索条件 調達係コード", "status": "covered" },
+      { "id": "FR-009", "text": "検索条件 調達担当コード", "status": "covered" },
+      { "id": "FR-010", "text": "検索条件 複社発注区分", "status": "covered" },
+      { "id": "FR-011", "text": "検索条件 手配連番", "status": "covered" },
+      { "id": "FR-012", "text": "検索条件 支給係コード", "status": "covered" },
+      { "id": "FR-013", "text": "検索条件 支給先コード", "status": "covered" },
+      { "id": "FR-014", "text": "検索条件 倉庫コード", "status": "covered" },
+      { "id": "FR-015", "text": "検索条件 持込先コード", "status": "covered" },
+      { "id": "FR-016", "text": "検索実行", "status": "covered" },
+      { "id": "FR-017", "text": "条件クリア", "status": "covered" },
+      { "id": "FR-018", "text": "一括ダウンロード", "status": "covered" },
+      { "id": "FR-019", "text": "一覧項目1〜61の表示", "status": "covered" },
+      { "id": "FR-020", "text": "金額は経理連携済のみ表示", "status": "covered" },
+      { "id": "FR-021", "text": "修理不可かつ0の訂正前単価は非表示", "status": "covered" },
+      { "id": "FR-022", "text": "単価区分スポット判定", "status": "covered" },
+      { "id": "FR-023", "text": "売買区分による入力可否制御", "status": "covered" },
+      { "id": "FR-024", "text": "権限別データ参照制御", "status": "covered" },
+      { "id": "FR-025", "text": "必須チェック", "status": "covered" },
+      { "id": "FR-026", "text": "参照専用", "status": "covered" }
+    ],
+    "objects": [
+      { "type": "table", "name": "XXSO_PAYMENT_DELIVERYS", "evidence": "db/01_tables.sql", "status": "covered" },
+      { "type": "table", "name": "XXSO_PAYMENT_DELIVERYS_SUM", "evidence": "db/01_tables.sql", "status": "covered" },
+      { "type": "table", "name": "XXSO_FURNISHED_PLACES", "evidence": "db/01_tables.sql", "status": "covered" },
+      { "type": "table", "name": "XXPO_SUPPLIERS_INFO", "evidence": "db/01_tables.sql", "status": "covered" },
+      { "type": "table", "name": "XXPO_SUPPLIERS_RP", "evidence": "db/01_tables.sql", "status": "covered" },
+      { "type": "table", "name": "XXIN_SUPPLY_ITEM_MST", "evidence": "db/01_tables.sql", "status": "covered" },
+      { "type": "table", "name": "XXSO_BROUGHT_IN_LOOKUP", "evidence": "db/01_tables.sql", "status": "covered" },
+      { "type": "table", "name": "MTL_SECONDARY_INVENTORIES", "evidence": "db/01_tables.sql", "status": "covered" },
+      { "type": "table", "name": "FND_USER", "evidence": "db/01_tables.sql", "status": "covered" },
+      { "type": "table", "name": "FND_LOOKUP_VALUES", "evidence": "db/01_tables.sql", "status": "covered" },
+      { "type": "package", "name": "XXSO_COMMON_OAF_TOOL_PKG", "evidence": "db/02_packages.sql", "status": "covered" },
+      { "type": "package", "name": "XXSO_LOV_CARTRIDGE_PKG", "evidence": "db/02_packages.sql", "status": "covered" },
+      { "type": "package", "name": "XXINVWI_DESC_PKG", "evidence": "db/02_packages.sql", "status": "covered" },
+      { "type": "package", "name": "XXSO_SO_610A_AUTH_PKG", "evidence": "db/02_packages.sql", "status": "covered" },
+      { "type": "view", "name": "XXSO_SO_WEBINQ_610A_V", "evidence": "db/03_views.sql", "status": "covered" },
+      { "type": "view", "name": "XXSO_PER_ALL_PEOPLE_F_V", "evidence": "db/03_views.sql", "status": "covered" },
+      { "type": "view", "name": "XXSO_SUPPLIER_ALL_V", "evidence": "db/03_views.sql", "status": "covered" },
+      { "type": "view", "name": "XXSO_SUPPLY_DEST_ALL_V", "evidence": "db/03_views.sql", "status": "covered" }
+    ]
+  },
+  "pageInventory": [
+    {
+      "page": 1,
+      "name": "支払納品情報検索",
+      "type": "report",
+      "requirementId": "FR-001",
+      "regions": [
+        { "order": 10, "name": "支払納品情報検索", "family": "staticContent", "sourceShape": "none" },
+        { "order": 20, "name": "search-conditions", "family": "staticContent", "sourceShape": "none" },
+        { "order": 30, "name": "payment-delivery-report", "family": "interactiveReport", "sourceShape": "sql" }
+      ]
+    },
+    { "page": 9999, "name": "Login Page", "type": "login", "requirementId": "FR-001" }
+  ],
+  "compositionPlan": {
+    "breadcrumbs": [
+      { "page": 1, "entry": "home", "root": true }
+    ],
+    "pageActions": [
+      { "page": 1, "label": "検索", "placement": "search-conditions", "requirementId": "FR-016" },
+      { "page": 1, "label": "クリア", "placement": "search-conditions", "requirementId": "FR-017" },
+      { "page": 1, "label": "CSVダウンロード", "placement": "interactiveReportActions", "requirementId": "FR-018" }
+    ],
+    "modalTargets": [],
+    "layoutRecipes": [
+      { "page": 1, "region": "search-conditions", "recipe": "contentBody-3columns" },
+      { "page": 1, "region": "payment-delivery-report", "recipe": "contentBody-full" }
+    ],
+    "managementHubEntries": [],
+    "sharedLovs": [
+      "XXSO_BUYING_AND_SELLING_CLS",
+      "XXSO_PAYMENT_DELIVERYS_STATUS",
+      "XXPO_MULTIPLE_COM_ODR_CLS",
+      "XXSO_SUPPLIER_610A",
+      "XXSO_BROUGHT_IN_610A",
+      "XXSO_PROCUREMENT_GROUP_610A",
+      "XXSO_PROCUREMENT_PERSON_610A",
+      "XXSO_FURNISHING_GROUP_610A",
+      "XXSO_FURNISHED_PLACE_610A",
+      "XXSO_WAREHOUSE_610A"
+    ]
+  },
+  "richUiPatternPlan": [
+    { "pattern": "interactiveReport", "page": 1, "region": "payment-delivery-report", "evidence": "仕様 4.1" },
+    { "pattern": "filterForm", "page": 1, "region": "search-conditions", "evidence": "仕様 4.1" }
+  ],
+  "lovPlan": [
+    { "name": "XXSO_BUYING_AND_SELLING_CLS", "type": "static", "display": "MEANING", "return": "LOOKUP_CODE", "source": "FND_LOOKUP_VALUES", "consumers": ["P1_BUYING_AND_SELLING_CLASS"] },
+    { "name": "XXSO_PAYMENT_DELIVERYS_STATUS", "type": "static", "display": "MEANING", "return": "LOOKUP_CODE", "source": "FND_LOOKUP_VALUES", "consumers": ["P1_STATUS"] },
+    { "name": "XXPO_MULTIPLE_COM_ODR_CLS", "type": "static", "display": "MEANING", "return": "LOOKUP_CODE", "source": "FND_LOOKUP_VALUES", "consumers": ["P1_MULTIPLE_SUPPLIERS_CLASS"] },
+    { "name": "XXSO_SUPPLIER_610A", "type": "sqlQuery", "display": "SUPPLIER_NAME", "return": "SUPPLIER_CODE", "source": "XXSO_SUPPLIER_ALL_V", "consumers": ["P1_SUPPLIER_CODE"] },
+    { "name": "XXSO_BROUGHT_IN_610A", "type": "sqlQuery", "display": "BROUGHT_IN_NAME", "return": "BROUGHT_IN_CODE", "source": "XXSO_BROUGHT_IN_LOOKUP", "consumers": ["P1_BROUGHT_IN_CODE"] },
+    { "name": "XXSO_PROCUREMENT_GROUP_610A", "type": "sqlQuery", "display": "NAME", "return": "CODE", "source": "XXSO_PAYMENT_DELIVERYS_SUM", "consumers": ["P1_PROCUREMENT_GROUP_CODE"] },
+    { "name": "XXSO_PROCUREMENT_PERSON_610A", "type": "sqlQuery", "display": "NAME", "return": "CODE", "source": "XXSO_PAYMENT_DELIVERYS_SUM", "consumers": ["P1_PROCUREMENT_PERSONNEL_CODE"] },
+    { "name": "XXSO_FURNISHING_GROUP_610A", "type": "sqlQuery", "display": "NAME", "return": "CODE", "source": "XXSO_PAYMENT_DELIVERYS_SUM", "consumers": ["P1_FURNISHING_GROUP"] },
+    { "name": "XXSO_FURNISHED_PLACE_610A", "type": "sqlQuery", "display": "SUPPLY_DEST_NAME", "return": "SUPPLY_DEST_CODE", "source": "XXSO_SUPPLY_DEST_ALL_V", "consumers": ["P1_FURNISHED_PLACE_CODE"] },
+    { "name": "XXSO_WAREHOUSE_610A", "type": "sqlQuery", "display": "NAME", "return": "CODE", "source": "MTL_SECONDARY_INVENTORIES", "consumers": ["P1_WH_CODE"] }
+  ],
+  "behaviorPlan": {
+    "modalTargets": [],
+    "pageActions": [
+      { "page": 1, "label": "検索", "action": "submitPage", "requirementId": "FR-016" },
+      { "page": 1, "label": "クリア", "action": "redirectToPage1ClearCache", "requirementId": "FR-017" }
+    ],
+    "parentChildContext": [],
+    "validations": [
+      { "page": 1, "item": "P1_DELIVERY_DATE_FROM", "type": "valueRequired", "message": "納入年月日（カラ）を入力してください。", "requirementId": "FR-025" },
+      { "page": 1, "item": "P1_DELIVERY_DATE_TO", "type": "valueRequired", "message": "納入年月日（マデ）を入力してください。", "requirementId": "FR-025" },
+      { "page": 1, "item": "P1_STATUS", "type": "valueRequired", "message": "ステータスを選択してください。", "requirementId": "FR-025" }
+    ],
+    "formContext": [],
+    "formDefaults": [
+      { "page": 1, "item": "P1_SUPPLIER_CODE", "source": "XXSO_SO_610A_AUTH_PKG.MY_SUPPLIER_CODE", "requirementId": "FR-024" },
+      { "page": 1, "item": "P1_FURNISHED_PLACE_CODE", "source": "XXSO_SO_610A_AUTH_PKG.MY_SUPPLY_DEST_CODE", "requirementId": "FR-024" }
+    ],
+    "refreshDependencies": [
+      { "source": "button search", "event": "click", "affected": "payment-delivery-report", "behavior": "submitPage", "requirementId": "FR-016" },
+      { "source": "P1_BUYING_AND_SELLING_CLASS", "event": "change", "affected": "P1_BROUGHT_IN_CODE,P1_FURNISHING_GROUP,P1_FURNISHED_PLACE_CODE", "behavior": "disable/enable", "requirementId": "FR-023" }
+    ],
+    "security": [
+      { "scope": "app", "type": "authorization", "scheme": "is-payment-delivery-user", "requirementId": "FR-024" },
+      { "scope": "region", "name": "payment-delivery-report", "type": "dataScope", "behavior": "XXSO_SO_610A_AUTH_PKG.SCOPE_OK", "requirementId": "FR-024" }
+    ],
+    "emptyStates": [
+      { "page": 1, "region": "payment-delivery-report", "message": "該当する支払納品情報はありません。" }
+    ]
+  },
+  "testPlan": [
+    { "scenario": "初期表示", "pages": [1], "expected": "検索条件と一覧が表示される", "method": "local validation" },
+    { "scenario": "必須チェック", "pages": [1], "expected": "未入力時にエラー", "method": "definition review" },
+    { "scenario": "検索", "pages": [1], "expected": "条件一致行のみ表示", "method": "SQL review" },
+    { "scenario": "クリア", "pages": [1], "expected": "条件初期化", "method": "definition review" },
+    { "scenario": "ダウンロード", "pages": [1], "expected": "CSV/Excel取得", "method": "IR standard" },
+    { "scenario": "売買区分切替", "pages": [1], "expected": "入力可否切替", "method": "DA review" },
+    { "scenario": "権限絞込", "pages": [1], "expected": "自社データのみ", "method": "authorization review" }
+  ]
+}

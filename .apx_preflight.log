@@ -1,0 +1,25 @@
+﻿{
+  "timestamp": "2026-11-25T04:29:13.221Z",
+  "db_connection_name": "toyota_maps",
+  "execution_mode_requested": "auto",
+  "execution_mode_used": "",
+  "capability_state": "preflight_timeout",
+  "required_runtime_commands_available": false,
+  "phase_reports": [
+    {
+      "phase": "preflight",
+      "budget_ms": 60000,
+      "duration_ms": 239848,
+      "budget_exceeded": true,
+      "status": "fail",
+      "failure_class": "preflight_timeout",
+      "next_safe_action": "Investigate why preflight exceeded the configured budget.",
+      "inputs_digest": "d82a6a53113fdd199f97fb1e5934b1402d46270309a249ab3a3093906df066da"
+    }
+  ],
+  "preflight_only": true,
+  "doctor_mode": false,
+  "notes": [
+    "Investigate why preflight exceeded the configured budget."
+  ]
+}

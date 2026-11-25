@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-11-25T04:56:27.937Z",
+  "build": "unknown",
+  "app_path": "c:\\EEE\\code\\08_work\\ToyotaMigration202611_WebInq\\applications\\xxso-so-610a",
+  "live_check_status": "pass",
+  "import_intent": "validate-and-import",
+  "import_status": "pass",
+  "warnings_as_errors": true,
+  "repair_recipe_catalog": "assets/validator-fix-recipes.json",
+  "sort_order": [
+    "file",
+    "line",
+    "severity",
+    "compiler_type",
+    "message"
+  ],
+  "problem_count": 0,
+  "unresolved_count": 0,
+  "diagnostic_sources": {
+    "compiler_truth": {
+      "status": "not_run",
+      "problem_count": 0
+    },
+    "vscode_problems": {
+      "status": "not_provided",
+      "unresolved_count": null
+    }
+  },
+  "problems": []
+}

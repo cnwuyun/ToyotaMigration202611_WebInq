@@ -1,0 +1,24 @@
+authorization administration-rights (
+    name: Administration Rights
+    type: plSqlFunctionBody
+    settings {
+        plsqlFunctionBody: return true;
+    }
+    error {
+        errorMessage: Insufficient privileges, user is not an Administrator
+    }
+)
+
+authorization is-payment-delivery-user (
+    name: 支払納品情報検索 利用権限
+    type: plSqlFunctionBody
+    settings {
+        plsqlFunctionBody:
+            ```plsql
+            return xxso_so_610a_auth_pkg.is_payment_delivery_user = 'Y';
+            ```
+    }
+    error {
+        errorMessage: 支払納品情報検索の参照権限がありません。システム管理者に問い合わせてください。
+    }
+)

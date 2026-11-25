@@ -1,0 +1,18 @@
+﻿sql.exe : Picked up JAVA_TOOL_OPTIONS: -XX:TieredStopAtLevel=1 -XX:+UseSerialGC -Xshare:auto
+At line:17 char:299
++ ... d;`nexit" | & "C:\EEE\tools\sqlcl\bin\sql.exe" -name toyota_maps -s 2 ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Picked up JAVA_...GC -Xshare:auto:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Importing application ID: 112 into workspace: MAPS
+Import successful.
+
+
+   [1mAPPLICATION_ID[m [1mAPPLICATION_NAME[m    [1mALIAS[m                        
+_________________ ___________________ ____________________________ 
+              101 MAPS                MAPS                         
+              102 休暇管理システム            EMPLOYEE-MANAGEMENT          
+              103 MAPS_WUYUN          MAPS103                      
+              105 価格決裁ワークフロー          PRICING_APPROVAL_WORKFLOW    
+              112 支払納品情報検索            XXSO-SO-610A                 
