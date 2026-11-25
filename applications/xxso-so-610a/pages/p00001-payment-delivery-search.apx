@@ -952,7 +952,7 @@ page 1 (
         buttonName: SEARCH
         label: 検索
         layout {
-            sequence: 10
+            sequence: 160
             region: @search-conditions
             slot: regionBody
         }
@@ -970,9 +970,10 @@ page 1 (
         buttonName: CLEAR
         label: クリア
         layout {
-            sequence: 20
+            sequence: 170
             region: @search-conditions
             slot: regionBody
+            startNewRow: false
         }
         appearance {
             buttonTemplate: @/text
@@ -991,11 +992,11 @@ page 1 (
             sequence: 10
             region: @search-conditions
             slot: regionBody
+            columnSpan: 6
         }
         appearance {
             template: @/optional
             templateOptions: #DEFAULT#
-            width: 8
         }
         validation {
             maxLength: 40
@@ -1018,11 +1019,12 @@ page 1 (
             sequence: 20
             region: @search-conditions
             slot: regionBody
+            columnSpan: 6
+            startNewRow: false
         }
         appearance {
             template: @/optional
             templateOptions: #DEFAULT#
-            width: 8
         }
         default {
             type: expression
@@ -1047,6 +1049,7 @@ page 1 (
             sequence: 30
             region: @search-conditions
             slot: regionBody
+            columnSpan: 6
         }
         appearance {
             template: @/optional
@@ -1066,11 +1069,12 @@ page 1 (
             sequence: 40
             region: @search-conditions
             slot: regionBody
+            columnSpan: 6
+            startNewRow: false
         }
         appearance {
             template: @/required
             templateOptions: #DEFAULT#
-            width: 8
             formatMask: YYYY/MM/DD
         }
         validation {
@@ -1090,11 +1094,11 @@ page 1 (
             sequence: 50
             region: @search-conditions
             slot: regionBody
+            columnSpan: 6
         }
         appearance {
             template: @/required
             templateOptions: #DEFAULT#
-            width: 8
             formatMask: YYYY/MM/DD
         }
         validation {
@@ -1118,6 +1122,8 @@ page 1 (
             sequence: 60
             region: @search-conditions
             slot: regionBody
+            columnSpan: 6
+            startNewRow: false
         }
         appearance {
             template: @/required
@@ -1140,11 +1146,11 @@ page 1 (
             sequence: 70
             region: @search-conditions
             slot: regionBody
+            columnSpan: 6
         }
         appearance {
             template: @/optional
             templateOptions: #DEFAULT#
-            width: 8
         }
         validation {
             maxLength: 40
@@ -1167,11 +1173,12 @@ page 1 (
             sequence: 80
             region: @search-conditions
             slot: regionBody
+            columnSpan: 6
+            startNewRow: false
         }
         appearance {
             template: @/optional
             templateOptions: #DEFAULT#
-            width: 8
         }
     )
 
@@ -1188,11 +1195,11 @@ page 1 (
             sequence: 90
             region: @search-conditions
             slot: regionBody
+            columnSpan: 6
         }
         appearance {
             template: @/optional
             templateOptions: #DEFAULT#
-            width: 8
         }
     )
 
@@ -1209,6 +1216,8 @@ page 1 (
             sequence: 100
             region: @search-conditions
             slot: regionBody
+            columnSpan: 6
+            startNewRow: false
         }
         appearance {
             template: @/optional
@@ -1228,11 +1237,11 @@ page 1 (
             sequence: 110
             region: @search-conditions
             slot: regionBody
+            columnSpan: 6
         }
         appearance {
             template: @/optional
             templateOptions: #DEFAULT#
-            width: 8
         }
         validation {
             maxLength: 20
@@ -1255,11 +1264,12 @@ page 1 (
             sequence: 120
             region: @search-conditions
             slot: regionBody
+            columnSpan: 6
+            startNewRow: false
         }
         appearance {
             template: @/optional
             templateOptions: #DEFAULT#
-            width: 8
         }
     )
 
@@ -1276,11 +1286,11 @@ page 1 (
             sequence: 130
             region: @search-conditions
             slot: regionBody
+            columnSpan: 6
         }
         appearance {
             template: @/optional
             templateOptions: #DEFAULT#
-            width: 8
         }
         default {
             type: expression
@@ -1305,11 +1315,12 @@ page 1 (
             sequence: 140
             region: @search-conditions
             slot: regionBody
+            columnSpan: 6
+            startNewRow: false
         }
         appearance {
             template: @/optional
             templateOptions: #DEFAULT#
-            width: 8
         }
     )
 
@@ -1326,11 +1337,11 @@ page 1 (
             sequence: 150
             region: @search-conditions
             slot: regionBody
+            columnSpan: 6
         }
         appearance {
             template: @/optional
             templateOptions: #DEFAULT#
-            width: 8
         }
     )
 
